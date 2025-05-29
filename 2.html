@@ -230,6 +230,15 @@
             font-size: 12px;
             color: #333;
         }
+        .navbar .left a svg {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.navbar .left a:hover svg {
+    transform: scale(1.1);
+}
+
     </style>
 </head>
 
@@ -237,12 +246,15 @@
     <div class="views">
         <div class="navbar theme-white">
             <div class="navbar-inner">
-                <div class="left">
-                    <a href="javascript:history.back()" class="external link">
-                        <i class="icon iconfont icon-angleleft"></i>
-                        
-                    </a>
-                </div>
+               <div class="left">
+    <a href="javascript:history.back()" class="external link" style="display: flex; align-items: center; height: 100%;">
+        <!-- Ícone SVG de seta para a esquerda -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24">
+            <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/>
+        </svg>
+    </a>
+</div>
+
                 <div class="center" style="position: absolute; width: 100%; text-align: center; font-weight: bold; color: #fff;">Detalhes da equipe LV1 LV2 e LV3</div>
                 <div class="right"></div>
             </div>

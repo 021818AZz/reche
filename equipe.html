@@ -607,7 +607,7 @@
                 const userData = await response.json();
                 
                 if (userData.codigo_convite) {
-                    const inviteLink = `file:///C:/Users/us/Desktop/reche/registrar.html?ref=${userData.codigo_convite}`;
+                    const inviteLink = `https://reche.pages.dev/registrar.html?ref=${userData.codigo_convite}`;
                     document.getElementById('inviteLinkText').textContent = inviteLink;
                     
                     // Configurar botão de copiar com ClipboardJS

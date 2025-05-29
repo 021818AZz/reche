@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html class="pixel-ratio-3 retina android android-5 android-5-0 watch-active-state">
+
+<head>
+    <meta -equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta -equiv="pragma" content="no-cache">
+    <meta -equiv="cache-control" content="no-cache">
+    <meta -equiv="expires" content="0">
+    <title>roche atendimento ao Cliente</title>
+    <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0d47a1">
+
+    <link rel="stylesheet" href="/static/home/css/framework7.ios.min.css">
+    <link rel="stylesheet" href="/static/home/css/app.css?v=5.8">
+    <link rel="stylesheet" href="/static/home/css/iconfont.css">
+</head>
+<style>
+    :root {
+        --primary-color: #ffae00;
+        --primary-dark: #ff7e00;
+        --dark-bg: #1a1f25;
+        --dark-card: #252a32;
+        --dark-panel: #2c313a;
+        --light-text: #ffffff;
+        --muted-text: rgba(255, 255, 255, 0.7);
+        --dim-text: rgba(255, 255, 255, 0.4);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-decoration: none;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+    }
+
+    body {
+        background-color: var(--dark-bg);
+        color: var(--light-text);
+        min-height: 100vh;
+        position: relative;
+        padding-bottom: 70px;
+    }
+
+    /* 3D Wave Header Styling */
+    .wave-header {
+        position: relative;
+        height: 220px;
+        overflow: hidden;
+        background: linear-gradient(45deg, var(--primary-dark), var(--primary-color));
+    }
+
+    .wave {
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%231a1f25' fill-opacity='1' d='M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    /* Floating navbar with blur effect */
+    .navbar {
+        width: 90%;
+        margin: 0 auto;
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        height: 60px;
+        background: rgba(25, 31, 40, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 16px;
+        z-index: 1000;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+    }
+
+    .left-nav {
+        display: flex;
+        align-items: center;
+    }
+
+    .left-nav a {
+        display: flex;
+        align-items: center;
+        color: var(--light-text);
+        text-decoration: none;
+        font-weight: 600;
+        padding: 8px 12px;
+        border-radius: 10px;
+        transition: background 0.3s;
+    }
+
+    .left-nav a:hover,
+    .left-nav a:active {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .left-nav i {
+        margin-right: 5px;
+        font-size: 20px;
+    }
+
+    .center-nav {
+        flex-grow: 1;
+        text-align: center;
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+    .right-nav {
+        width: 82px;
+    }
+
+    /* Header content styling */
+    .header-content {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    .service-time {
+        font-size: 40px;
+        font-weight: 700;
+        color: var(--light-text);
+        margin-bottom: 5px;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .service-status {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--light-text);
+        opacity: 0.9;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Main content area */
+    .page-content {
+        position: relative;
+        padding: 0 20px;
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+
+    /* Service options card */
+    .service-options {
+        /* margin-top: -50px; */
+        margin-bottom: 25px;
+        position: relative;
+        z-index: 20;
+    }
+
+    .option-card {
+        background: var(--dark-card);
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .option-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .service-link {
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .service-link:last-child {
+        border-bottom: none;
+    }
+
+    .service-icon {
+        width: 54px;
+        height: 54px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+        border-radius: 12px;
+        margin-right: 15px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .service-icon:before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transform: rotate(45deg);
+        animation: shine 3s infinite linear;
+    }
+
+    @keyframes  shine {
+        0% {
+            transform: translateX(-100%) rotate(45deg);
+        }
+
+        100% {
+            transform: translateX(100%) rotate(45deg);
+        }
+    }
+
+    .service-icon img {
+        width: 30px;
+        height: 30px;
+        /* filter: brightness(0) invert(1); */
+        z-index: 1;
+    }
+
+    .service-details {
+        flex: 1;
+    }
+
+    .service-name {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: var(--light-text);
+    }
+
+    .service-description {
+        font-size: 13px;
+        color: var(--muted-text);
+    }
+
+    .service-arrow {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 174, 0, 0.1);
+        border-radius: 50%;
+        color: var(--primary-color);
+        font-size: 18px;
+        transition: all 0.3s ease;
+    }
+
+    .service-link:hover .service-arrow {
+        background: var(--primary-color);
+        color: var(--dark-bg);
+        transform: scale(1.1);
+    }
+
+    /* Info card styling */
+    .info-card {
+        background: var(--dark-panel);
+        border-radius: 16px;
+        padding: 25px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card-title {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: var(--light-text);
+        display: flex;
+        align-items: center;
+    }
+
+    .card-title i {
+        color: var(--primary-color);
+        margin-right: 10px;
+        font-size: 24px;
+    }
+
+    .info-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .info-item {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 15px;
+        line-height: 1.6;
+        color: var(--muted-text);
+    }
+
+    .info-item:before {
+        content: '';
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background-color: var(--primary-color);
+        border-radius: 50%;
+        left: 10px;
+        top: 10px;
+    }
+
+    .info-item:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Decorative elements */
+    .decoration-circle {
+        position: absolute;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(255, 174, 0, 0.1), rgba(255, 126, 0, 0.1));
+        z-index: 0;
+    }
+
+    .circle-1 {
+        width: 150px;
+        height: 150px;
+        right: -50px;
+        top: -50px;
+    }
+
+    .circle-2 {
+        width: 100px;
+        height: 100px;
+        left: -30px;
+        bottom: -30px;
+    }
+
+    /* Footer spacing */
+    .footer-spacer {
+        height: 60px;
+    }
+
+    /* Pulse animation for online indicator */
+    .pulse {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #4CAF50;
+        margin-right: 8px;
+        position: relative;
+    }
+
+    .pulse:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: rgba(76, 175, 80, 0.6);
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes  pulse {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        100% {
+            transform: scale(3);
+            opacity: 0;
+        }
+    }
+    footer {
+    position: fixed; /* fixa na parte de baixo */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* ou qualquer cor desejada */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px 0;
+    border-top: 1px solid #ddd;
+    z-index: 1000;
+}
+
+footer .foot_bo {
+    flex: 1;
+    text-align: center;
+}
+
+footer .foot_bo img {
+    width: 24px;
+    height: 24px;
+    display: block;
+    margin: 0 auto 4px;
+}
+
+footer .foot_bo p {
+    margin: 0;
+    font-size: 12px;
+    color: #333;
+}
+
+</style>
+
+<body>
+    <div class="views">
+        <!-- Floating navbar with blur effect -->
+        <div class="navbar">
+            <div class="left-nav">
+                <a href="home.html" class="external link">
+    <img src="https://img.icons8.com/?size=60&id=60636&format=png" alt="Voltar" style="height: 24px; width: 24px;">
+
+
+                    Voltar
+                </a>
+            </div>
+            <div class="center-nav">atendimento ao Cliente</div>
+            <div class="right-nav"></div>
+        </div>
+
+        <!-- 3D Wave Header -->
+        <div class="wave-header">
+            <div class="header-content">
+                <div class="service-time" id="kefutime">08:00-23:00</div>
+                <div class="service-status"><span class="pulse"></span>Atendimento ao cliente online</div>
+            </div>
+            <div class="wave"></div>
+        </div>
+
+        <div class="page-content">
+            <!-- Service Options Card -->
+            <div class="service-options">
+                <div class="option-card">
+                    <a href="https://t.me/roche31" class="service-link">
+                        <div class="service-icon">
+                            <img src="https://img.icons8.com/?size=96&id=jZ1z64hEYYLW&format=png">
+                        </div>
+                        <div class="service-details">
+                            <div class="service-name">atendimento ao Cliente</div>
+                            <div class="service-description">Equipe profissional oferece serviço um a um para você</div>
+                        </div>
+                        <div class="service-arrow">
+                            <i class="icon iconfont icon-right"></i>
+                        </div>
+                    </a>
+                    <a href="https://t.me/+PbM_coC8sSUxOTQ0" class="service-link">
+                        <div class="service-icon">
+                            <img src="https://img.icons8.com/?size=96&id=jZ1z64hEYYLW&format=png">
+                        </div>
+                        <div class="service-details">
+                            <div class="service-name">Grupo de Discussão do Telegram</div>
+                            <div class="service-description">Junte-se à nossa comunidade de usuários para compartilhar e se comunicar</div>
+                        </div>
+                        <div class="service-arrow">
+                            <i class="icon iconfont icon-right"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Information Card -->
+            <div class="info-card">
+                <div class="decoration-circle circle-1"></div>
+                <div class="decoration-circle circle-2"></div>
+                <div class="card-title">
+                    <i class="icon iconfont icon-info"></i>
+                    Notificação de atendimento ao cliente
+                </div>
+                <div class="info-list" id="kfinfo">
+                    <div class="info-item">Se você tiver alguma dúvida sobre nossa plataforma, entre em contato com o atendimento ao cliente online.</div>
+                    <div class="info-item">Se nosso atendimento ao cliente online não responder à sua mensagem a tempo, por favor, seja paciente.</div>
+                    <div class="info-item">Não compartilhe sua senha com ninguém. Nossa equipe não pedirá sua senha.</div>
+                </div>
+            </div>
+
+            <div class="footer-spacer"></div>
+        </div>
+
+        <style>
+    .game1 {
+        border-radius: 50%;
+        animation: rotate1 2s linear infinite;
+    }
+
+    @keyframes  rotate1 {
+        0% {
+            transform: rotateZ(0deg);
+        }
+
+        100% {
+            transform: rotateZ(360deg);
+        }
+    }
+</style>
+<footer>
+        <div class="foot_bo">
+        <a href="home.html">
+            <img src="https://roche-ec.cyou/static/home/img/dhl/0010.png" />
+            <p class="xz">Início</p>
+        </a>
+    </div>
+            <div class="foot_bo">
+        <a href="produto.html">
+            <img src="https://roche-ec.cyou/static/home/img/dhl/0012.png" />
+            <p>Ganhos</p>
+        </a>
+    </div>
+        <!--     <div class="foot_bo">
+        <a href="https://roche-ec.cyou/game/index">
+            <img src="/static/home/img/ico_zp.png" class="game1" />
+            <p>Jogo</p>
+        </a>
+    </div>
+     -->
+    <!--     <div class="foot_bo">
+        <a href="https://roche-ec.cyou/user/service">
+            <img src="/static/home/img/custemService2.png" class="" />
+            <p>atendimento ao Cliente</p>
+        </a>
+    </div>
+     -->
+    <!--     <div class="foot_bo">
+        <a href="https://roche-ec.cyou/treasure/index">
+            <img src="/static/home/img/p20.png" class="game1" />
+            <p>Tesouro</p>
+        </a>
+    </div>
+     -->
+        <div class="foot_bo">
+        <a href="equipe.html">
+            <img src="https://roche-ec.cyou/static/home/img/dhl/0014.png" />
+            <p>Team</p>
+        </a>
+    </div>
+        <!-- -->
+    <!--    <div class="foot_bo">-->
+    <!--        <a href="https://roche-ec.cyou/redpacket/index">-->
+    <!--            <img src="/static/home/img/hb3.png"/>-->
+    <!--            <p>Reward</p>-->
+    <!--        </a>-->
+    <!--    </div>-->
+    <!-- -->
+        <div class="foot_bo">
+        <a href="perfil.html">
+            <img src="https://roche-ec.cyou/static/home/img/dhl/0016.png" />
+            <p>Meu</p>
+        </a>
+    </div>
+    </footer>    </div>
+
+    <script>
+        // Add page scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 20) {
+                navbar.style.background = 'rgba(25, 31, 40, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(25, 31, 40, 0.85)';
+            }
+        });
+    </script>
+</body>
+
+</html>

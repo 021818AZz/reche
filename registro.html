@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html class="pixel-ratio-3 retina android android-5 android-5-0 watch-active-state">
+
+<head>
+    <meta -equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta -equiv="pragma" content="no-cache">
+    <meta -equiv="cache-control" content="no-cache">
+    <meta -equiv="expires" content="0">
+    <title>Roche Registro de saldo</title>
+    <link rel="stylesheet" href="/static/home/css/app.css?v=5.8">
+    <link rel="stylesheet" href="/static/home/css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/css/dropload.css" />
+    <script type="text/javascript" src="/static/home/layui/layui.js"></script>
+    <script type="text/javascript" src="/static/home/js/jquery.mink.js"></script>
+    <script type="text/javascript" src="/static/home/js/dropload.min.js"></script>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(180deg, #ffae00, rgba(255, 215, 0, 0));
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            min-height: 100vh;
+        }
+
+        /* Modern navbar */
+        .navbar {
+            background: #ffae00;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar-inner {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            height: 50px;
+        }
+
+        .left a {
+            color: #333333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .center {
+            flex: 1;
+            text-align: center;
+            color: #333;
+            font-weight: 500;
+            font-size: 17px;
+        }
+
+        .right {
+            width: 40px;
+        }
+
+        /* Balance card */
+        .page-content {
+            padding: 65px 15px 70px;
+        }
+
+        .balance-card {
+            background: linear-gradient(135deg, #ff7e00, #ff7e00);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(255, 126, 0, 0.2);
+        }
+
+        .balance-header {
+            margin-bottom: 10px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .balance-amount {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .bg-circle {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            right: -50px;
+            bottom: -50px;
+            z-index: 0;
+        }
+
+        .small-circle {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            left: -20px;
+            top: -20px;
+            z-index: 0;
+        }
+
+        /* Transaction items */
+        .transaction-list {
+            margin-bottom: 60px;
+        }
+
+        .transaction-item {
+            background: #ffffff;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            position: relative;
+            padding: 15px;
+        }
+
+        .transaction-item:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+        }
+
+        .transaction-item.income:after {
+            background: #28a745;
+        }
+
+        .transaction-item.expense:after {
+            background: #dc3545;
+        }
+
+        .transaction-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .transaction-title {
+            font-weight: 500;
+            font-size: 15px;
+            color: #333;
+            width: 70%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .transaction-date {
+            font-size: 13px;
+            color: #888;
+            text-align: right;
+        }
+
+        .transaction-details {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .transaction-amount {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .amount-income {
+            color: #28a745;
+        }
+
+        .amount-expense {
+            color: #dc3545;
+        }
+
+        .transaction-balance {
+            font-size: 14px;
+            color: #666;
+            align-self: center;
+        }
+
+        /* Status styles */
+        .status-container {
+            display: flex;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        .status-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+        }
+
+        .status-text {
+            font-size: 13px;
+        }
+
+        .status-pending {
+            color: #ffc107;
+        }
+
+        .status-approved {
+            color: #28a745;
+        }
+
+        .status-rejected {
+            color: #dc3545;
+        }
+
+        /* Loading styles */
+        .dropload-down {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .dropload-refresh,
+        .dropload-load,
+        .dropload-noData {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-top: 2px solid #fff;
+            border-radius: 50%;
+            margin-right: 10px;
+            vertical-align: middle;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Empty state */
+        .empty-state {
+            padding: 40px 0;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            display: none;
+        }
+
+        .empty-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 5px 0;
+            border-top: 1px solid #ddd;
+            z-index: 1000;
+        }
+
+        footer .foot_bo {
+            flex: 1;
+            text-align: center;
+        }
+
+        footer .foot_bo img {
+            width: 24px;
+            height: 24px;
+            display: block;
+            margin: 0 auto 4px;
+        }
+
+        footer .foot_bo p {
+            margin: 0;
+            font-size: 12px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="views">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="left">
+                    <a href="home.html" class="external link">
+                        <img src="https://img.icons8.com/?size=60&id=60636&format=png" alt="Voltar" style="height: 24px; width: 24px;">
+                    </a>
+                </div>
+                <div class="center">Registro de saldo</div>
+                <div class="right"></div>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <!-- Balance Card -->
+            <div class="balance-card">
+                <div class="small-circle"></div>
+                <div class="bg-circle"></div>
+                <div class="balance-header"></div>
+                <div class="balance-amount" id="currentBalance"></div>
+            </div>
+
+            <!-- Transaction List -->
+            <div class="transaction-list tixianlog-log" id="withdrawalList"></div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState">
+                <div class="empty-icon">
+                    <i class="icon iconfont icon-empty"></i>
+                </div>
+                <div>Nenhum registro de retirada encontrado</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="height: 60px;"></div>
+    
+    <footer>
+        <div class="foot_bo">
+            <a href="home.html">
+                <img src="https://roche-ec.cyou/static/home/img/dhl/0010.png" />
+                <p class="xz">Início</p>
+            </a>
+        </div>
+        <div class="foot_bo">
+            <a href="produto.html">
+                <img src="https://roche-ec.cyou/static/home/img/dhl/0012.png" />
+                <p>Ganhos</p>
+            </a>
+        </div>
+        <div class="foot_bo">
+            <a href="equipe.html">
+                <img src="https://roche-ec.cyou/static/home/img/dhl/0014.png" />
+                <p>Team</p>
+            </a>
+        </div>
+        <div class="foot_bo">
+            <a href="perfil.html">
+                <img src="https://roche-ec.cyou/static/home/img/dhl/0016.png" />
+                <p>Meu</p>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar se o usuário está logado
+            const userId = localStorage.getItem("user_id");
+            if (!userId) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Carregar saldo do usuário
+            fetchUserBalance(userId);
+            
+            // Buscar retiradas do usuário
+            fetchWithdrawals(userId);
+        });
+
+        function fetchUserBalance(userId) {
+            fetch(`https://api-wped.onrender.com/retirada?userId=${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Assumindo que a API retorna um array de depósitos
+                    // Vamos somar todos os saldos (ajuste conforme sua API)
+                    let totalBalance = retirada;
+                    
+                    if (data && data.length > 0) {
+                        // Verifica se há um campo 'saldo' ou 'balance' no retorno
+                        // Ajuste conforme a estrutura real da sua API
+                        data.forEach(deposit => {
+                            if (deposit.quantidade || deposit.balance) {
+                                totalBalance += parseFloat(deposit.saldo || deposit.quantidade || 0);
+                            }
+                        });
+                    }
+                    
+                    // Atualizar o saldo na interface
+                    document.getElementById('currentBalance').textContent = ` ${totalBalance.toFixed(2)}`;
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar saldo:', error);
+                    document.getElementById('currentBalance').textContent = '';
+                });
+        }
+
+        function fetchWithdrawals(userId) {
+            fetch('https://api-wped.onrender.com/retirada')
+                .then(response => response.json())
+                .then(data => {
+                    // Filtrar retiradas do usuário logado
+                    const userWithdrawals = data.filter(withdrawal => 
+                        withdrawal.userId === userId && withdrawal.isWithdrawal
+                    );
+
+                    displayWithdrawals(userWithdrawals);
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar retiradas:', error);
+                    document.getElementById('emptyState').style.display = 'block';
+                });
+        }
+
+        function displayWithdrawals(withdrawals) {
+            const withdrawalList = document.getElementById('withdrawalList');
+            const emptyState = document.getElementById('emptyState');
+
+            // Limpar lista
+            withdrawalList.innerHTML = '';
+
+            if (withdrawals.length === 0) {
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+
+            // Ordenar por data (mais recente primeiro)
+            withdrawals.sort((a, b) => new Date(b.withdrawalTime) - new Date(a.withdrawalTime));
+
+            // Adicionar cada retirada à lista
+            withdrawals.forEach(withdrawal => {
+                const withdrawalItem = document.createElement('div');
+                withdrawalItem.className = 'transaction-item expense';
+                
+                // Formatar data
+                const withdrawalDate = new Date(withdrawal.withdrawalTime);
+                const formattedDate = withdrawalDate.toLocaleDateString('pt-BR') + ' ' + withdrawalDate.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
+                
+                // Determinar ícone e classe de status
+                let statusIcon, statusClass, statusText;
+                
+                if (withdrawal.approved) {
+                    statusIcon = `<svg class="status-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" fill="#28a745"/>
+                    </svg>`;
+                    statusClass = 'status-approved';
+                    statusText = 'Aprovado';
+                } else if (withdrawal.processed && !withdrawal.approved) {
+                    statusIcon = `<svg class="status-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="#dc3545"/>
+                    </svg>`;
+                    statusClass = 'status-rejected';
+                    statusText = 'Rejeitado';
+                } else {
+                    statusIcon = `<svg class="status-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="#ffc107"/>
+                    </svg>`;
+                    statusClass = 'status-pending';
+                    statusText = 'Processando';
+                }
+                
+                withdrawalItem.innerHTML = `
+                    <div class="transaction-header">
+                        <div class="transaction-title">Retirada para ${withdrawal.account}</div>
+                        <div class="transaction-date">${formattedDate}</div>
+                    </div>
+                    <div class="transaction-details">
+                        <div class="transaction-amount amount-expense">-AOA ${withdrawal.amount}</div>
+                    </div>
+                    <div class="status-container">
+                        ${statusIcon}
+                        <span class="status-text ${statusClass}">${statusText}</span>
+                    </div>
+                `;
+                
+                withdrawalList.appendChild(withdrawalItem);
+            });
+        }
+    </script>
+</body>
+</html>

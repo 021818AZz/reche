@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html class="pixel-ratio-3 retina android android-5 android-5-0 watch-active-state">
+
+<head>
+    <meta -equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta -equiv="pragma" content="no-cache">
+    <meta -equiv="cache-control" content="no-cache">
+    <meta -equiv="expires" content="0">
+    <title>roche Meu</title>
+    <link rel="stylesheet" href="/static/home/css/app.css?v=5.8&m=1">
+    <link rel="stylesheet" href="/static/home/css/iconfont.css">
+    <script type="text/javascript" src="/static/home/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/static/home/js/layer.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        body {
+            background: linear-gradient(180deg, #ffae00, rgba(255, 215, 0, 0));
+            min-height: 100vh;
+        }
+
+        /* 1 */
+        .mine-page {
+            height: 100%;
+            padding-top: 20px;
+        }
+
+        header {
+            /* width: 68.6px; */
+            width: calc(92% - 30px);
+            height: 150px;
+            background: #ff9500;
+            border-radius: 10px;
+            margin: 30px 4% 15px;
+            padding: 15px 15px 0;
+            position: relative;
+            display: block;
+        }
+
+        header .recordBox {
+            position: absolute;
+            right: 12px;
+            top: 25px;
+            width: 100px;
+            height: 30px;
+            background: #fff;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        header .recordBox p {
+            font-size: 12px;
+            color: #000;
+            margin-right: 1px;
+        }
+
+        header .recordBox img {
+            width: 20px;
+            height: 20px;
+        }
+
+        header .userInfo {
+            display: flex;
+            align-items: center;
+        }
+
+        .avatar {
+            width: 100px;
+        }
+
+        .avatar img {
+            width: 100%;
+            /* 
+            margin-top: 10px; */
+        }
+
+        header .userInfo div {
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        .user-mobile {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            /* margin-bottom: 10px; */
+        }
+
+        header .userInfo span {
+            color: #fff;
+        }
+
+        header .amountWarp {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        header .amountWarp P {
+            font-size: 20px;
+            font-weight: 900;
+            color: #fff;
+            margin-top: 10px;
+        }
+
+        header .amountWarp span {
+            font-size: 12px;
+            color: #ededff;
+            margin-top: 5px;
+        }
+
+        /* 2 */
+        .tools-warp {
+            width: 92%;
+            height: 80px;
+            margin-left: 4%;
+            background: #ffffff;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .tools-warp-box {
+            width: 25%;
+            height: 100%;
+            /* border: 1px solid #fff; */
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .tools-warp-img {
+            width: 100%;
+            height: 65%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tools-warp-img img {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto;
+        }
+
+        .tools-warp-title {
+            width: 100%;
+            height: 35%;
+            display: flex;
+            /* align-items: center; */
+            justify-content: center;
+        }
+
+        .tools-warp-title p {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ff7e00;
+            /* margin-top: 5px; */
+        }
+
+        /* 3 */
+        .mine-list {
+            margin: 10px 4% 70px;
+            padding: 10px 10px 25px 10px;
+            background-color: #ffffff;
+            border-radius: 5px;
+        }
+
+        .mine-list .mine-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+            border-bottom: 1px dashed #ff7e00;
+            padding-bottom: 5px;
+        }
+
+        .mine-list .mine-item .left {
+            width: 30px;
+            height: 30px;
+        }
+
+        .mine-list .mine-item p {
+            text-align: left;
+            width: 90%;
+            padding-left: 10px;
+            font-size: 16px;
+            font-weight: 400;
+            color: #ff7e00;
+        }
+
+        .mine-list .mine-item .right {
+            width: 10px;
+            height: 15px;
+        }
+        footer {
+    position: fixed; /* fixa na parte de baixo */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* ou qualquer cor desejada */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px 0;
+    border-top: 1px solid #ddd;
+    z-index: 1000;
+}
+
+footer .foot_bo {
+    flex: 1;
+    text-align: center;
+}
+
+footer .foot_bo img {
+    width: 24px;
+    height: 24px;
+    display: block;
+    margin: 0 auto 4px;
+}
+
+footer .foot_bo p {
+    margin: 0;
+    font-size: 12px;
+    color: #333;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="mine-page">
+        <!-- 1 -->
+        <header>
+            <div class="userInfo">
+                <div class="avatar">
+                    <img src="https://roche-ec.cyou/static/home/img/dhl/0033.png" alt="">
+                </div>
+                <div>
+                    <p class="user-mobile"></p>
+                </div>
+            </div>
+            <div class="amountWarp">
+                <p>AOA 0.00</p>
+                <p>AOA 0.00</p>
+            </div>
+            <div class="amountWarp"><span>Saldo da conta</span><span>Renda total</span></div>
+        </header>
+        <!-- 2 -->
+        <div class="tools-warp">
+            <div class="tools-warp-box" onclick="window.location.href='recarregar.html'">
+                <div class="tools-warp-img">
+                    <img src="https://roche-ec.cyou/static/home/img/dhl/0023.png"
+                        alt="">
+                </div>
+                <div class="tools-warp-title">
+                    <p>Recarregar</p>
+                </div>
+            </div>
+            <div class="tools-warp-box" onclick="window.location.href='retirar.html'">
+                <div class="tools-warp-img">
+                    <img src="https://roche-ec.cyou/static/home/img/dhl/0024.png"
+                        alt="">
+                </div>
+                <div class="tools-warp-title">
+                    <p>Retirar</p>
+                </div>
+            </div>
+        </div>
+        <!-- 3 -->
+        <li>
+
+            <div class="mine-list">
+                <!-- <div class="mine-item" onclick="window.location.href='https://roche-ec.cyou/user/rank'">
+                    <img class="left"
+                        src="/static/home/img/ggq/0034.png"
+                        alt="">
+                    <p>Classificação em tempo real</p>
+                    <img class="right"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAaCAYAAACHD21cAAAAAXNSR0IArs4c6QAAAkBJREFUOE+N1EuP0lAUB3Bh15KwVMdhHjwKVCBEYly4AwZ178ZAAuGVfhxJCB1oG8IXobDQmImjjpPR0kKhKcb3M03v3RFzJowBgdJue35p7/+cexz9fr8xm83uqqr6uFqtfrhm83GIovjc7XbfxxgriqIky+XyRzvWwfO8JxgM9lwuVwAhJEuSlGQY5tM27ICCRqOxF4vFeiRJ+jHGg9FolCwWi5+t8CWEp1ar7ScSCcA+hNB7WZZT1Wr1yyb8D0KBIAgHFEXBb3sRQu80TUvl8/mv6/AShILj4+PDSCQCXz7EGF8Mh8NUqVT69j9egVBQr9e98Xi8T5LkPsb4fDqdprPZ7PdFvBZCQavV8tM0LQJGCL2dTCbpQqHw4wpvhPO0A/O0PRjjM1mW05VK5Se8s4RQ0Gw2KZqmIbBdhNBrRVEygLdCwBzHBcPhMAR2C2N8quv6A1sQMMuyoWg0CnjHMIxntiHHcREIiyCI64Zh9GzBdrt9m6IoQDcQQi90XX+0FbZarTCEQ5LkTYTQiSRJDxmG+WMJ4VzQDoIgdkzTfDkYDDKALNsBSc7PtGua5ul4PM4Ui8XflgMAvYN5JQgCevdqOp1mcrncL8uREwQhEAqFAHkQQm8URTm6mpaNsNPp+H0+HwSxZ5rmmaZpR4vzuRayLOubNxiG+lySpDTDMEs3YgXyPO+FkSII4sA0zQtVVdfewSW4eHHtost2iKJ44na778Ge0TQtuWlVrGyAbrf71Ol03tE07cm2zbaI/wISLiUfDoMK1AAAAABJRU5ErkJggg=="
+                        alt="">
+                </div>
+                <div class="mine-item" onclick="window.location.href='https://roche-ec.cyou/user/lastdayrank'">
+                    <img class="left"
+                        src="/static/home/img/ggq/0039.png"
+                        alt="">
+                    <p>Vencedores de ontem</p>
+                    <img class="right"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAaCAYAAACHD21cAAAAAXNSR0IArs4c6QAAAkBJREFUOE+N1EuP0lAUB3Bh15KwVMdhHjwKVCBEYly4AwZ178ZAAuGVfhxJCB1oG8IXobDQmImjjpPR0kKhKcb3M03v3RFzJowBgdJue35p7/+cexz9fr8xm83uqqr6uFqtfrhm83GIovjc7XbfxxgriqIky+XyRzvWwfO8JxgM9lwuVwAhJEuSlGQY5tM27ICCRqOxF4vFeiRJ+jHGg9FolCwWi5+t8CWEp1ar7ScSCcA+hNB7WZZT1Wr1yyb8D0KBIAgHFEXBb3sRQu80TUvl8/mv6/AShILj4+PDSCQCXz7EGF8Mh8NUqVT69j9egVBQr9e98Xi8T5LkPsb4fDqdprPZ7PdFvBZCQavV8tM0LQJGCL2dTCbpQqHw4wpvhPO0A/O0PRjjM1mW05VK5Se8s4RQ0Gw2KZqmIbBdhNBrRVEygLdCwBzHBcPhMAR2C2N8quv6A1sQMMuyoWg0CnjHMIxntiHHcREIiyCI64Zh9GzBdrt9m6IoQDcQQi90XX+0FbZarTCEQ5LkTYTQiSRJDxmG+WMJ4VzQDoIgdkzTfDkYDDKALNsBSc7PtGua5ul4PM4Ui8XflgMAvYN5JQgCevdqOp1mcrncL8uREwQhEAqFAHkQQm8URTm6mpaNsNPp+H0+HwSxZ5rmmaZpR4vzuRayLOubNxiG+lySpDTDMEs3YgXyPO+FkSII4sA0zQtVVdfewSW4eHHtost2iKJ44na778Ge0TQtuWlVrGyAbrf71Ol03tE07cm2zbaI/wISLiUfDoMK1AAAAABJRU5ErkJggg=="
+                        alt="">
+                </div>
+                <div class="mine-item" onclick="window.location.href='https://roche-ec.cyou/treasure/index'">
+                    <img class="left"
+                        src="/static/home/img/ggq/0037.png"
+                        alt="">
+                    <p>Tesouro</p><img class="right"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAaCAYAAACHD21cAAAAAXNSR0IArs4c6QAAAkBJREFUOE+N1EuP0lAUB3Bh15KwVMdhHjwKVCBEYly4AwZ178ZAAuGVfhxJCB1oG8IXobDQmImjjpPR0kKhKcb3M03v3RFzJowBgdJue35p7/+cexz9fr8xm83uqqr6uFqtfrhm83GIovjc7XbfxxgriqIky+XyRzvWwfO8JxgM9lwuVwAhJEuSlGQY5tM27ICCRqOxF4vFeiRJ+jHGg9FolCwWi5+t8CWEp1ar7ScSCcA+hNB7WZZT1Wr1yyb8D0KBIAgHFEXBb3sRQu80TUvl8/mv6/AShILj4+PDSCQCXz7EGF8Mh8NUqVT69j9egVBQr9e98Xi8T5LkPsb4fDqdprPZ7PdFvBZCQavV8tM0LQJGCL2dTCbpQqHw4wpvhPO0A/O0PRjjM1mW05VK5Se8s4RQ0Gw2KZqmIbBdhNBrRVEygLdCwBzHBcPhMAR2C2N8quv6A1sQMMuyoWg0CnjHMIxntiHHcREIiyCI64Zh9GzBdrt9m6IoQDcQQi90XX+0FbZarTCEQ5LkTYTQiSRJDxmG+WMJ4VzQDoIgdkzTfDkYDDKALNsBSc7PtGua5ul4PM4Ui8XflgMAvYN5JQgCevdqOp1mcrncL8uREwQhEAqFAHkQQm8URTm6mpaNsNPp+H0+HwSxZ5rmmaZpR4vzuRayLOubNxiG+lySpDTDMEs3YgXyPO+FkSII4sA0zQtVVdfewSW4eHHtost2iKJ44na778Ge0TQtuWlVrGyAbrf71Ol03tE07cm2zbaI/wISLiUfDoMK1AAAAABJRU5ErkJggg=="
+                        alt="">
+                </div> -->
+                <div class="mine-item" onclick="window.location.href='registro.html'">
+                    <img class="left"
+                        src="https://roche-ec.cyou/static/home/img/dhl/0027.png"
+                        alt="">
+                    <p>Registro de retirada</p><img class="right"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAaCAYAAACHD21cAAAAAXNSR0IArs4c6QAAAkBJREFUOE+N1EuP0lAUB3Bh15KwVMdhHjwKVCBEYly4AwZ178ZAAuGVfhxJCB1oG8IXobDQmImjjpPR0kKhKcb3M03v3RFzJowBgdJue35p7/+cexz9fr8xm83uqqr6uFqtfrhm83GIovjc7XbfxxgriqIky+XyRzvWwfO8JxgM9lwuVwAhJEuSlGQY5tM27ICCRqOxF4vFeiRJ+jHGg9FolCwWi5+t8CWEp1ar7ScSCcA+hNB7WZZT1Wr1yyb8D0KBIAgHFEXBb3sRQu80TUvl8/mv6/AShILj4+PDSCQCXz7EGF8Mh8NUqVT69j9egVBQr9e98Xi8T5LkPsb4fDqdprPZ7PdFvBZCQavV8tM0LQJGCL2dTCbpQqHw4wpvhPO0A/O0PRjjM1mW05VK5Se8s4RQ0Gw2KZqmIbBdhNBrRVEygLdCwBzHBcPhMAR2C2N8quv6A1sQMMuyoWg0CnjHMIxntiHHcREIiyCI64Zh9GzBdrt9m6IoQDcQQi90XX+0FbZarTCEQ5LkTYTQiSRJDxmG+WMJ4VzQDoIgdkzTfDkYDDKALNsBSc7PtGua5ul4PM4Ui8XflgMAvYN5JQgCevdqOp1mcrncL8uREwQhEAqFAHkQQm8URTm6mpaNsNPp+H0+HwSxZ5rmmaZpR4vzuRayLOubNxiG+lySpDTDMEs3YgXyPO+FkSII4sA0zQtVVdfewSW4eHHtost2iKJ44na778Ge0TQtuWlVrGyAbrf71Ol03tE07cm2zbaI/wISLiUfDoMK1AAAAABJRU5ErkJggg=="
+                        alt="">
+                </div>
+
+<div class="mine-item" onclick="window.location.href='pro2.html'">
+                    <img class="left"
+                        src="https://roche-ec.cyou/static/home/img/dhl/0027.png"
+                        alt="">
+                    <p>Produtos adquiridos </p><img class="right"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAaCAYAAACHD21cAAAAAXNSR0IArs4c6QAAAkBJREFUOE+N1EuP0lAUB3Bh15KwVMdhHjwKVCBEYly4AwZ178ZAAuGVfhxJCB1oG8IXobDQmImjjpPR0kKhKcb3M03v3RFzJowBgdJue35p7/+cexz9fr8xm83uqqr6uFqtfrhm83GIovjc7XbfxxgriqIky+XyRzvWwfO8JxgM9lwuVwAhJEuSlGQY5tM27ICCRqOxF4vFeiRJ+jHGg9FolCwWi5+t8CWEp1ar7ScSCcA+hNB7WZZT1Wr1yyb8D0KBIAgHFEXBb3sRQu80TUvl8/mv6/AShILj4+PDSCQCXz7EGF8Mh8NUqVT69j9egVBQr9e98Xi8T5LkPsb4fDqdprPZ7PdFvBZCQavV8tM0LQJGCL2dTCbpQqHw4wpvhPO0A/O0PRjjM1mW05VK5Se8s4RQ0Gw2KZqmIbBdhNBrRVEygLdCwBzHBcPhMAR2C2N8quv6A1sQMMuyoWg0CnjHMIxntiHHcREIiyCI64Zh9GzBdrt9m6IoQDcQQi90XX+0FbZarTCEQ5LkTYTQiSRJDxmG+WMJ4VzQDoIgdkzTfDkYDDKALNsBSc7PtGua5ul4PM4Ui8XflgMAvYN5JQgCevdqOp1mcrncL8uREwQhEAqFAHkQQm8URTm6mpaNsNPp+H0+HwSxZ5rmmaZpR4vzuRayLOubNxiG+lySpDTDMEs3YgXyPO+FkSII4sA0zQtVVdfewSW4eHHtost2iKJ44na778Ge0TQtuWlVrGyAbrf71Ol03tE07cm2zbaI/wISLiUfDoMK1AAAAABJRU5ErkJggg=="
+                        alt="">
+                </div>
+
+
+                <div class="mine-item" onclick="window.location.href=''">
+                    
+                </div>
+
+
+                <div class="mine-item" onclick="window.location.href='retirar.html'">
+                    <img class="left"
+                        src="https://roche-ec.cyou/static/home/img/dhl/0031.png"
+                        alt="">
+                    <p>Retirar</p><img class="right"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAaCAYAAACHD21cAAAAAXNSR0IArs4c6QAAAkBJREFUOE+N1EuP0lAUB3Bh15KwVMdhHjwKVCBEYly4AwZ178ZAAuGVfhxJCB1oG8IXobDQmImjjpPR0kKhKcb3M03v3RFzJowBgdJue35p7/+cexz9fr8xm83uqqr6uFqtfrhm83GIovjc7XbfxxgriqIky+XyRzvWwfO8JxgM9lwuVwAhJEuSlGQY5tM27ICCRqOxF4vFeiRJ+jHGg9FolCwWi5+t8CWEp1ar7ScSCcA+hNB7WZZT1Wr1yyb8D0KBIAgHFEXBb3sRQu80TUvl8/mv6/AShILj4+PDSCQCXz7EGF8Mh8NUqVT69j9egVBQr9e98Xi8T5LkPsb4fDqdprPZ7PdFvBZCQavV8tM0LQJGCL2dTCbpQqHw4wpvhPO0A/O0PRjjM1mW05VK5Se8s4RQ0Gw2KZqmIbBdhNBrRVEygLdCwBzHBcPhMAR2C2N8quv6A1sQMMuyoWg0CnjHMIxntiHHcREIiyCI64Zh9GzBdrt9m6IoQDcQQi90XX+0FbZarTCEQ5LkTYTQiSRJDxmG+WMJ4VzQDoIgdkzTfDkYDDKALNsBSc7PtGua5ul4PM4Ui8XflgMAvYN5JQgCevdqOp1mcrncL8uREwQhEAqFAHkQQm8URTm6mpaNsNPp+H0+HwSxZ5rmmaZpR4vzuRayLOubNxiG+lySpDTDMEs3YgXyPO+FkSII4sA0zQtVVdfewSW4eHHtost2iKJ44na778Ge0TQtuWlVrGyAbrf71Ol03tE07cm2zbaI/wISLiUfDoMK1AAAAABJRU5ErkJggg=="
+                        alt="">
+                </div>
+                <div class="mine-item" onclick="window.location.href='atendimento.html'">
+                    <img class="left"
+                        src="https://roche-ec.cyou/static/home/img/dhl/0026.png"
+                        alt="">
+                    <p>Atendimento ao Cliente</p><img class="right"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAaCAYAAACHD21cAAAAAXNSR0IArs4c6QAAAkBJREFUOE+N1EuP0lAUB3Bh15KwVMdhHjwKVCBEYly4AwZ178ZAAuGVfhxJCB1oG8IXobDQmImjjpPR0kKhKcb3M03v3RFzJowBgdJue35p7/+cexz9fr8xm83uqqr6uFqtfrhm83GIovjc7XbfxxgriqIky+XyRzvWwfO8JxgM9lwuVwAhJEuSlGQY5tM27ICCRqOxF4vFeiRJ+jHGg9FolCwWi5+t8CWEp1ar7ScSCcA+hNB7WZZT1Wr1yyb8D0KBIAgHFEXBb3sRQu80TUvl8/mv6/AShILj4+PDSCQCXz7EGF8Mh8NUqVT69j9egVBQr9e98Xi8T5LkPsb4fDqdprPZ7PdFvBZCQavV8tM0LQJGCL2dTCbpQqHw4wpvhPO0A/O0PRjjM1mW05VK5Se8s4RQ0Gw2KZqmIbBdhNBrRVEygLdCwBzHBcPhMAR2C2N8quv6A1sQMMuyoWg0CnjHMIxntiHHcREIiyCI64Zh9GzBdrt9m6IoQDcQQi90XX+0FbZarTCEQ5LkTYTQiSRJDxmG+WMJ4VzQDoIgdkzTfDkYDDKALNsBSc7PtGua5ul4PM4Ui8XflgMAvYN5JQgCevdqOp1mcrncL8uREwQhEAqFAHkQQm8URTm6mpaNsNPp+H0+HwSxZ5rmmaZpR4vzuRayLOubNxiG+lySpDTDMEs3YgXyPO+FkSII4sA0zQtVVdfewSW4eHHtost2iKJ44na778Ge0TQtuWlVrGyAbrf71Ol03tE07cm2zbaI/wISLiUfDoMK1AAAAABJRU5ErkJggg=="
+                        alt="">
+                </div>
+
+                <div class="mine-item" onclick="window.location.href='sobre.html'"><img class="left"
+                        src="https://roche-ec.cyou/static/home/img/dhl/0030.png"
+                        alt="">
+                    <p>Sobre nós</p><img class="right"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAaCAYAAACHD21cAAAAAXNSR0IArs4c6QAAAkBJREFUOE+N1EuP0lAUB3Bh15KwVMdhHjwKVCBEYly4AwZ178ZAAuGVfhxJCB1oG8IXobDQmImjjpPR0kKhKcb3M03v3RFzJowBgdJue35p7/+cexz9fr8xm83uqqr6uFqtfrhm83GIovjc7XbfxxgriqIky+XyRzvWwfO8JxgM9lwuVwAhJEuSlGQY5tM27ICCRqOxF4vFeiRJ+jHGg9FolCwWi5+t8CWEp1ar7ScSCcA+hNB7WZZT1Wr1yyb8D0KBIAgHFEXBb3sRQu80TUvl8/mv6/AShILj4+PDSCQCXz7EGF8Mh8NUqVT69j9egVBQr9e98Xi8T5LkPsb4fDqdprPZ7PdFvBZCQavV8tM0LQJGCL2dTCbpQqHw4wpvhPO0A/O0PRjjM1mW05VK5Se8s4RQ0Gw2KZqmIbBdhNBrRVEygLdCwBzHBcPhMAR2C2N8quv6A1sQMMuyoWg0CnjHMIxntiHHcREIiyCI64Zh9GzBdrt9m6IoQDcQQi90XX+0FbZarTCEQ5LkTYTQiSRJDxmG+WMJ4VzQDoIgdkzTfDkYDDKALNsBSc7PtGua5ul4PM4Ui8XflgMAvYN5JQgCevdqOp1mcrncL8uREwQhEAqFAHkQQm8URTm6mpaNsNPp+H0+HwSxZ5rmmaZpR4vzuRayLOubNxiG+lySpDTDMEs3YgXyPO+FkSII4sA0zQtVVdfewSW4eHHtost2iKJ44na778Ge0TQtuWlVrGyAbrf71Ol03tE07cm2zbaI/wISLiUfDoMK1AAAAABJRU5ErkJggg=="
+                        alt="">
+                </div>
+                <div class="mine-item" onclick="window.location.href=''">
+                    <img class="left"
+                        src="https://roche-ec.cyou/static/home/img/dhl/0029.png"
+                        alt="">
+                    <p>Baixar App</p><img class="right"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAaCAYAAACHD21cAAAAAXNSR0IArs4c6QAAAkBJREFUOE+N1EuP0lAUB3Bh15KwVMdhHjwKVCBEYly4AwZ178ZAAuGVfhxJCB1oG8IXobDQmImjjpPR0kKhKcb3M03v3RFzJowBgdJue35p7/+cexz9fr8xm83uqqr6uFqtfrhm83GIovjc7XbfxxgriqIky+XyRzvWwfO8JxgM9lwuVwAhJEuSlGQY5tM27ICCRqOxF4vFeiRJ+jHGg9FolCwWi5+t8CWEp1ar7ScSCcA+hNB7WZZT1Wr1yyb8D0KBIAgHFEXBb3sRQu80TUvl8/mv6/AShILj4+PDSCQCXz7EGF8Mh8NUqVT69j9egVBQr9e98Xi8T5LkPsb4fDqdprPZ7PdFvBZCQavV8tM0LQJGCL2dTCbpQqHw4wpvhPO0A/O0PRjjM1mW05VK5Se8s4RQ0Gw2KZqmIbBdhNBrRVEygLdCwBzHBcPhMAR2C2N8quv6A1sQMMuyoWg0CnjHMIxntiHHcREIiyCI64Zh9GzBdrt9m6IoQDcQQi90XX+0FbZarTCEQ5LkTYTQiSRJDxmG+WMJ4VzQDoIgdkzTfDkYDDKALNsBSc7PtGua5ul4PM4Ui8XflgMAvYN5JQgCevdqOp1mcrncL8uREwQhEAqFAHkQQm8URTm6mpaNsNPp+H0+HwSxZ5rmmaZpR4vzuRayLOubNxiG+lySpDTDMEs3YgXyPO+FkSII4sA0zQtVVdfewSW4eHHtost2iKJ44na778Ge0TQtuWlVrGyAbrf71Ol03tE07cm2zbaI/wISLiUfDoMK1AAAAABJRU5ErkJggg=="
+                        alt="">
+                </div>
+                <div class="mine-item" onclick="window.location.href='index.html'"><img class="left"
+                        src="https://roche-ec.cyou/static/home/img/dhl/0028.png"
+                        alt="">
+                    <p>Sair</p><img class="right"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAaCAYAAACHD21cAAAAAXNSR0IArs4c6QAAAkBJREFUOE+N1EuP0lAUB3Bh15KwVMdhHjwKVCBEYly4AwZ178ZAAuGVfhxJCB1oG8IXobDQmImjjpPR0kKhKcb3M03v3RFzJowBgdJue35p7/+cexz9fr8xm83uqqr6uFqtfrhm83GIovjc7XbfxxgriqIky+XyRzvWwfO8JxgM9lwuVwAhJEuSlGQY5tM27ICCRqOxF4vFeiRJ+jHGg9FolCwWi5+t8CWEp1ar7ScSCcA+hNB7WZZT1Wr1yyb8D0KBIAgHFEXBb3sRQu80TUvl8/mv6/AShILj4+PDSCQCXz7EGF8Mh8NUqVT69j9egVBQr9e98Xi8T5LkPsb4fDqdprPZ7PdFvBZCQavV8tM0LQJGCL2dTCbpQqHw4wpvhPO0A/O0PRjjM1mW05VK5Se8s4RQ0Gw2KZqmIbBdhNBrRVEygLdCwBzHBcPhMAR2C2N8quv6A1sQMMuyoWg0CnjHMIxntiHHcREIiyCI64Zh9GzBdrt9m6IoQDcQQi90XX+0FbZarTCEQ5LkTYTQiSRJDxmG+WMJ4VzQDoIgdkzTfDkYDDKALNsBSc7PtGua5ul4PM4Ui8XflgMAvYN5JQgCevdqOp1mcrncL8uREwQhEAqFAHkQQm8URTm6mpaNsNPp+H0+HwSxZ5rmmaZpR4vzuRayLOubNxiG+lySpDTDMEs3YgXyPO+FkSII4sA0zQtVVdfewSW4eHHtost2iKJ44na778Ge0TQtuWlVrGyAbrf71Ol03tE07cm2zbaI/wISLiUfDoMK1AAAAABJRU5ErkJggg=="
+                        alt="">
+                </div>
+            </div>
+    </div>
+
+    <style>
+    .game1 {
+        border-radius: 50%;
+        animation: rotate1 2s linear infinite;
+    }
+
+    @keyframes  rotate1 {
+        0% {
+            transform: rotateZ(0deg);
+        }
+
+        100% {
+            transform: rotateZ(360deg);
+        }
+    }
+</style>
+<footer>
+        <div class="foot_bo">
+        <a href="home.html">
+            <img src="https://roche-ec.cyou/static/home/img/dhl/0010.png" />
+            <p class="xz">Início</p>
+        </a>
+    </div>
+            <div class="foot_bo">
+        <a href="produto.html">
+            <img src="https://roche-ec.cyou/static/home/img/dhl/0012.png" />
+            <p>Ganhos</p>
+        </a>
+    </div>
+        <!--     <div class="foot_bo">
+        <a href="https://roche-ec.cyou/game/index">
+            <img src="/static/home/img/ico_zp.png" class="game1" />
+            <p>Jogo</p>
+        </a>
+    </div>
+     -->
+    <!--     <div class="foot_bo">
+        <a href="https://roche-ec.cyou/user/service">
+            <img src="/static/home/img/custemService2.png" class="" />
+            <p>atendimento ao Cliente</p>
+        </a>
+    </div>
+     -->
+    <!--     <div class="foot_bo">
+        <a href="https://roche-ec.cyou/treasure/index">
+            <img src="/static/home/img/p20.png" class="game1" />
+            <p>Tesouro</p>
+        </a>
+    </div>
+     -->
+        <div class="foot_bo">
+        <a href="equipe.html">
+            <img src="https://roche-ec.cyou/static/home/img/dhl/0014.png" />
+            <p>Team</p>
+        </a>
+    </div>
+        <!-- -->
+    <!--    <div class="foot_bo">-->
+    <!--        <a href="https://roche-ec.cyou/redpacket/index">-->
+    <!--            <img src="/static/home/img/hb3.png"/>-->
+    <!--            <p>Reward</p>-->
+    <!--        </a>-->
+    <!--    </div>-->
+    <!-- -->
+        <div class="foot_bo">
+        <a href="perfil.html">
+            <img src="https://roche-ec.cyou/static/home/img/dhl/0016.png" />
+            <p>Meu</p>
+        </a>
+    </div>
+    </footer>    
+
+    <script type="text/javascript">
+    // Função para carregar os dados do usuário
+    async function loadUserData() {
+        const userId = localStorage.getItem("user_id");
+        if (!userId) {
+            console.log("Usuário não logado");
+            return;
+        }
+
+        try {
+            const response = await fetch(`https://api-wped.onrender.com/user/${userId}`);
+            if (!response.ok) {
+                throw new Error("Erro ao carregar dados do usuário");
+            }
+            
+            const userData = await response.json();
+            
+            // Atualizar número de telefone
+            if (userData.telefone) {
+                document.querySelector('.user-mobile').textContent = userData.telefone;
+            }
+            
+            // Atualizar saldo da conta
+            if (userData.saldo !== undefined) {
+                const balanceElements = document.querySelectorAll('.amountWarp p');
+                if (balanceElements.length >= 2) {
+                    balanceElements[0].textContent = `AOA ${userData.saldo.toFixed(2)}`;
+                    // Se houver um campo separado para renda total, você pode atualizá-lo também
+                    // balanceElements[1].textContent = `AOA ${userData.total_income?.toFixed(2) || '0.00'}`;
+                }
+            }
+            
+        } catch (error) {
+            console.error("Erro ao carregar dados:", error);
+            // Você pode adicionar um feedback visual de erro aqui se desejar
+        }
+    }
+
+    // Carregar os dados quando a página for aberta
+    document.addEventListener('DOMContentLoaded', function() {
+        loadUserData();
+        
+        // Atualizar a cada 30 segundos (opcional)
+        setInterval(loadUserData, 30000);
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP  2- Confirmação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0;
+            text-align: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .container {
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .loading {
+            display: none;
+            margin: 20px 0;
+        }
+        .success-message {
+            color: green;
+            display: none;
+        }
+        .error-message {
+            color: red;
+            display: none;
+        }
+        button {
+            background-color: #00519d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        /* Estilos para o Toast */
+        .toast {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: black;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            display: none;
+        }
+        /* Centralizando o gif */
+        .gif-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Toast de erro -->
+    <div id="toast" class="toast">Saldo insuficiente para realizar esta compra.</div>
+    
+    <div class="gif-container" id="gifContainer">
+        <!-- GIF de carregamento -->
+        <img id="loadingGif" src="https://img.icons8.com/?size=100&id=5gQEqHavGCc4&format=gif" alt="Loading...">
+    </div>
+
+    <script>
+        // Dados do produto VIP 2
+        const productData = {
+            produto: "vip2",
+            preco: 23000, // em centavos (R$5,00)
+            renda_diaria: 1150, // em centavos (R$5,50)
+            renda_total: 207000, // em centavos (R$412,50)
+            prazo: 180 // dias
+        };
+
+        // Elementos da página
+        const gifContainer = document.getElementById('gifContainer');
+        const toast = document.getElementById('toast');
+
+        async function confirmPurchase() {
+            try {
+                // Mostrar loading e desabilitar botão
+                gifContainer.style.display = 'flex';  // Exibe o GIF
+                document.body.style.overflow = 'hidden'; // Desabilita o scroll enquanto carrega
+
+                // Obter dados do usuário do localStorage
+                const userData = JSON.parse(localStorage.getItem('user_data'));
+                
+                if (!userData || !userData.id) {
+                    throw new Error('Dados do usuário não encontrados. Faça login novamente.');
+                }
+
+                // Verificar saldo do usuário
+                const userResponse = await fetch(`https://api-wped.onrender.com/user/${userData.id}`);
+                const user = await userResponse.json();
+                
+                if (user.saldo < productData.preco) {
+                    // Exibir Toast de erro
+                    showToast('Saldo insuficiente para realizar esta compra.', 'error');
+                    setTimeout(() => { window.location.href = 'perfil.html'; }, 3000);  // Redireciona após erro
+                    return;  // Sai da função
+                }
+
+                // Criar data de compra no formato ISO
+                const dataCompra = new Date().toISOString();
+
+                // Dados para enviar para a API de produtos
+                const purchaseData = {
+                    userId: userData.id,
+                    produto: productData.produto,
+                    preco: productData.preco,
+                    renda_diaria: productData.renda_diaria,
+                    renda_total: productData.renda_total,
+                    prazo: productData.prazo,
+                    dataCompra: dataCompra
+                };
+
+                // Enviar dados do produto para a API
+                const productResponse = await fetch('https://api-wped.onrender.com/produto', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(purchaseData)
+                });
+
+                if (!productResponse.ok) {
+                    throw new Error('Erro ao registrar o produto.');
+                }
+
+                // Atualizar saldo do usuário
+                const updatedUser = {
+                    ...user,
+                    saldo: user.saldo - productData.preco
+                };
+
+                const updateUserResponse = await fetch(`https://api-wped.onrender.com/user/${userData.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(updatedUser)
+                });
+
+                if (!updateUserResponse.ok) {
+                    throw new Error('Erro ao atualizar o saldo do usuário.');
+                }
+
+                // Redirecionar após 3 segundos
+                setTimeout(() => {
+                    window.location.href = 'pro2.html'; // Redireciona para a página de carteira
+                }, 3000);
+
+            } catch (error) {
+                console.error('Erro:', error);
+                showToast(error.message, 'error');  // Exibe o erro no toast
+            } finally {
+                // Oculta o GIF de carregamento
+                gifContainer.style.display = 'none';
+            }
+        }
+
+        // Função para exibir o Toast de erro
+        function showToast(message, type) {
+            toast.textContent = message;
+            toast.style.display = 'block';
+            toast.style.backgroundColor = (type === 'error') ? 'black' : 'green';
+            
+            // Ocultar o Toast após 3 segundos
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        // Chamar a função de processamento assim que a página carregar
+        window.onload = function() {
+            confirmPurchase();
+        }
+    </script>
+</body>
+</html>

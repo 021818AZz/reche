@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html class="pixel-ratio-3 retina android android-5 android-5-0 watch-active-state">
+
+<head>
+    <meta -equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta -equiv="pragma" content="no-cache">
+    <meta -equiv="cache-control" content="no-cache">
+    <meta -equiv="expires" content="0">
+    <title>roche</title>
+    <link rel="stylesheet" href="/static/home/css/app.css?v=5.8">
+    <link rel="stylesheet" href="/static/home/css/iconfont.css">
+    <link rel="stylesheet" href="/static/home/css/style.css?v=1">
+    <script type="text/javascript" src="/static/home/js/TouchSlide.1.1.js"></script>
+    <script type="text/javascript" src="/static/home/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/static/home/js/layer.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(180deg, #ffae00, rgba(255, 215, 0, 0));
+            height: auto;
+        }
+
+        .product-container {
+            max-width: 450px;
+            margin: 0 auto;
+            /* background-color: #fff; */
+            overflow: hidden;
+        }
+
+        /* Cabeçalho do centro de produtos */
+        .product-header {
+            /* background-color: #ffba00; */
+            padding: 20px;
+            position: relative;
+            height: 80px;
+        }
+
+        .product-header h2 {
+            color: #000;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .product-cube {
+            position: absolute;
+            right: 25px;
+            top: 10px;
+        }
+
+        .product-cube img {
+            width: 120px;
+            height: 120px;
+        }
+
+        /* Contêiner de abas */
+        .tab-container {
+            display: flex;
+            background-color: #ffba00;
+            border-radius: 30px;
+            padding: 5px;
+            margin: 0 20px;
+            margin-top: -15px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border-radius: 25px;
+            color: #fff;
+            gap: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .tab.active {
+            background-color: #ff7e00;
+        }
+
+        .tab-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tab-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Cartão de produto */
+        .product-card-container {
+            width: 92%;
+            margin: 40px auto 70px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .product-info {
+            display: flex;
+            padding: 15px;
+            position: relative;
+        }
+
+        .product-image {
+            width: 70px;
+            height: 70px;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-right: 15px;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .product-cycle,
+        .product-revenue {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .label {
+            color: #666;
+        }
+
+        .value {
+            color: #ff7e00;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .buy-button {
+            position: absolute;
+            right: 15px;
+            top: 60%;
+            transform: translateY(-50%);
+            background: linear-gradient(180deg, #ffba00, #ff8400);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Rodapé do produto */
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            background-color: #fff9f0;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .product-price,
+        .daily-return {
+            font-size: 14px;
+        }
+
+        .price-value {
+            color: #ff7e00;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .return-value {
+            color: #ff7e00;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        footer {
+    position: fixed; /* fixa na parte de baixo */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* ou qualquer cor desejada */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px 0;
+    border-top: 1px solid #ddd;
+    z-index: 1000;
+}
+
+footer .foot_bo {
+    flex: 1;
+    text-align: center;
+}
+
+footer .foot_bo img {
+    width: 24px;
+    height: 24px;
+    display: block;
+    margin: 0 auto 4px;
+}
+
+footer .foot_bo p {
+    margin: 0;
+    font-size: 12px;
+    color: #333;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="product-container">
+        <div class="product-header">
+            <h2>Centro de Produtos</h2>
+            <div class="product-cube">
+                <img src="https://img.icons8.com/?size=160&id=lNpXAy86EGDB&format=png">
+            </div>
+        </div>
+
+        <div class="product-card-container">
+                                    <div class="product-card" onclick="window.location.href='produto1.html'">
+                <div class="product-info">
+                    <div class="product-image">
+                        <img src="https://roche-ec.cyou/uploads/image/20250514/5bba26f370bb70109edb187909a55786.jpg">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Roche  VIP 1</h3>
+                        <div class="product-cycle">
+                            <span class="label">Ciclo:</span>
+                            <span class="value">180 Dias</span>
+                        </div>
+                        <div class="product-revenue">
+                            <span class="label">Receita total:</span>
+                            <span class="value">AOA 67500</span>
+                        </div>
+                    </div>
+                    <div class="buy-button">
+                        <span>Comprar</span>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <div class="product-price">
+                        <span class="label">Preço:</span>
+                        <span class="price-value">AOA 7500.00</span>
+                    </div>
+                    <div class="daily-return">
+                        <span class="label">Retorno diário:</span>
+                        <span class="return-value">AOA 375.00</span>
+                    </div>
+                </div>
+            </div>
+                                                <div class="product-card" onclick="window.location.href='produto2.html'">
+                <div class="product-info">
+                    <div class="product-image">
+                        <img src="https://roche-ec.cyou/uploads/image/20250514/5deb5bc872c4bbfb41efeabd51931059.jpg">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Roche  VIP2</h3>
+                        <div class="product-cycle">
+                            <span class="label">Ciclo:</span>
+                            <span class="value">180 Dias</span>
+                        </div>
+                        <div class="product-revenue">
+                            <span class="label">Receita total:</span>
+                            <span class="value">AOA 207000.00</span>
+                        </div>
+                    </div>
+                    <div class="buy-button">
+                        <span>Comprar</span>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <div class="product-price">
+                        <span class="label">Preço:</span>
+                        <span class="price-value">AOA 23000.00</span>
+                    </div>
+                    <div class="daily-return">
+                        <span class="label">Retorno diário:</span>
+                        <span class="return-value">AOA 1150.00</span>
+                    </div>
+                </div>
+            </div>
+                                                <div class="product-card" onclick="window.location.href='produto3.html'">
+                <div class="product-info">
+                    <div class="product-image">
+                        <img src="https://roche-ec.cyou/uploads/image/20250514/35ece98ef5f2447559152307a2544a69.jpg">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Roche VIP3</h3>
+                        <div class="product-cycle">
+                            <span class="label">Ciclo:</span>
+                            <span class="value">180 Dias</span>
+                        </div>
+                        <div class="product-revenue">
+                            <span class="label">Receita total:</span>
+                            <span class="value">AOA 900000.00</span>
+                        </div>
+                    </div>
+                    <div class="buy-button">
+                        <span>Comprar</span>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <div class="product-price">
+                        <span class="label">Preço:</span>
+                        <span class="price-value">AOA 100000.00</span>
+                    </div>
+                    <div class="daily-return">
+                        <span class="label">Retorno diário:</span>
+                        <span class="return-value">AOA 100000.00</span>
+                    </div>
+                </div>
+            </div>
+                                </div>
+    </div>
+
+
+    <div class="device-container" style="display: none;">
+        <div class="device-title">
+            <div class="device-title-text">——Lista de Produtos——</div>
+            <p onclick="window.location.href='https://roche-ec.cyou/device/index'">Meus Projetos</p>
+        </div>
+                <div class="end-cont">
+            <div class="productList">
+                <div class="productItem">
+                    <img class="productImg" alt=""
+                        src="/uploads/image/20250514/5deb5bc872c4bbfb41efeabd51931059.jpg">
+                    <div class="productName">Roche  VIP 1</div>
+                    <div class="info-warp">
+                        <div class="one">
+                            <div class="top">R$ 50</div>
+                            <div class="bottom">Preço</div>
+                        </div>
+                        <div class="two">
+                            <div class="top">60</div>
+                            <div class="bottom">Período</div>
+                        </div>
+                        <div class="three">
+                            <div class="top">R$ 7</div>
+                            <div class="bottom">Rendimento diário</div>
+                        </div>
+                        <div class="four">
+                            <div class="top">R$ 420</div>
+                            <div class="bottom">Rendimento total</div>
+                        </div>
+                    </div>
+                                        <div class="van-button__content" onclick="window.location.href='https://roche-ec.cyou/device/buydevicenow?id=2'">
+                        <span class="van-button__text">Comprar</span>
+                    </div>
+                                    </div>
+            </div>
+        </div>
+                <div class="end-cont">
+            <div class="productList">
+                <div class="productItem">
+                    <img class="productImg" alt=""
+                        src="/uploads/image/20250514/35ece98ef5f2447559152307a2544a69.jpg">
+                    <div class="productName">Roche  VIP2</div>
+                    <div class="info-warp">
+                        <div class="one">
+                            <div class="top">R$ 150</div>
+                            <div class="bottom">Preço</div>
+                        </div>
+                        <div class="two">
+                            <div class="top">60</div>
+                            <div class="bottom">Período</div>
+                        </div>
+                        <div class="three">
+                            <div class="top">R$ 25</div>
+                            <div class="bottom">Rendimento diário</div>
+                        </div>
+                        <div class="four">
+                            <div class="top">R$ 1,500</div>
+                            <div class="bottom">Rendimento total</div>
+                        </div>
+                    </div>
+                                        <div class="van-button__content" onclick="window.location.href='https://roche-ec.cyou/device/buydevicenow?id=3'">
+                        <span class="van-button__text">Comprar</span>
+                    </div>
+                                    </div>
+            </div>
+        </div>
+                <div class="end-cont">
+            <div class="productList">
+                <div class="productItem">
+                    <img class="productImg" alt=""
+                        src="/uploads/image/20250514/5bba26f370bb70109edb187909a55786.jpg">
+                    <div class="productName">Roche VIP3</div>
+                    <div class="info-warp">
+                        <div class="one">
+                            <div class="top">R$ 500</div>
+                            <div class="bottom">Preço</div>
+                        </div>
+                        <div class="two">
+                            <div class="top">60</div>
+                            <div class="bottom">Período</div>
+                        </div>
+                        <div class="three">
+                            <div class="top">R$ 100</div>
+                            <div class="bottom">Rendimento diário</div>
+                        </div>
+                        <div class="four">
+                            <div class="top">R$ 6,000</div>
+                            <div class="bottom">Rendimento total</div>
+                        </div>
+                    </div>
+                                        <div class="van-button__content" onclick="window.location.href='https://roche-ec.cyou/device/buydevicenow?id=4'">
+                        <span class="van-button__text">Comprar</span>
+                    </div>
+                                    </div>
+            </div>
+        </div>
+            </div>
+    <style>
+    .game1 {
+        border-radius: 50%;
+        animation: rotate1 2s linear infinite;
+    }
+
+    @keyframes  rotate1 {
+        0% {
+            transform: rotateZ(0deg);
+        }
+
+        100% {
+            transform: rotateZ(360deg);
+        }
+    }
+</style>
+<footer>
+        <div class="foot_bo">
+        <a href="home.html">
+            <img src="https://roche-ec.cyou/static/home/img/dhl/0010.png" />
+            <p class="xz">Início</p>
+        </a>
+    </div>
+            <div class="foot_bo">
+        <a href="produto.html">
+            <img src="https://roche-ec.cyou/static/home/img/dhl/0012.png" />
+            <p>Ganhos</p>
+        </a>
+    </div>
+        <!--     <div class="foot_bo">
+        <a href="https://roche-ec.cyou/game/index">
+            <img src="/static/home/img/ico_zp.png" class="game1" />
+            <p>Jogo</p>
+        </a>
+    </div>
+     -->
+    <!--     <div class="foot_bo">
+        <a href="https://roche-ec.cyou/user/service">
+            <img src="/static/home/img/custemService2.png" class="" />
+            <p>atendimento ao Cliente</p>
+        </a>
+    </div>
+     -->
+    <!--     <div class="foot_bo">
+        <a href="https://roche-ec.cyou/treasure/index">
+            <img src="/static/home/img/p20.png" class="game1" />
+            <p>Tesouro</p>
+        </a>
+    </div>
+     -->
+        <div class="foot_bo">
+        <a href="equipe.html">
+            <img src="https://roche-ec.cyou/static/home/img/dhl/0014.png" />
+            <p>Team</p>
+        </a>
+    </div>
+        <!-- -->
+    <!--    <div class="foot_bo">-->
+    <!--        <a href="https://roche-ec.cyou/redpacket/index">-->
+    <!--            <img src="/static/home/img/hb3.png"/>-->
+    <!--            <p>Reward</p>-->
+    <!--        </a>-->
+    <!--    </div>-->
+    <!-- -->
+        <div class="foot_bo">
+        <a href="perfil.html">
+            <img src="https://roche-ec.cyou/static/home/img/dhl/0016.png" />
+            <p>Meu</p>
+        </a>
+    </div>
+    </footer> 
+    </script>
+</body>
+
+</html>

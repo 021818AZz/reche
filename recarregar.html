@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta -equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="renderer" content="webkit">
+    <meta -equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>roche Recarga</title>
+    <!--<link rel="stylesheet" href="/static/home/css/framework7.ios.min.css">-->
+    <link rel="stylesheet" href="/static/home/css/app.css?v=5.8">
+    <link rel="stylesheet" href="/static/home/css/iconfont.css">
+    <script type="text/javascript" src="/static/home/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/static/home/js/layer.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(180deg, #ffae00, rgba(255, 215, 0, 0));
+            font-family: Arial, sans-serif;
+        }
+
+        .cz-index-top {
+            height: 120px;
+            margin-top: 65px;
+            background: linear-gradient(135deg, #ff7e00, #ff7e00);
+            margin-left: 4%;
+            margin-right: 4%;
+            border-radius: 10px;
+            padding: 15px;
+            color: #fff;
+            box-shadow: 0 3px 10px rgba(29, 43, 237, 0.2);
+        }
+
+        .tixianlog-index-top-title {
+            margin-top: 0.5rem;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .tixianlog-index-top-mull {
+            height: 3rem;
+            line-height: 3rem;
+            text-align: left;
+            padding-left: 0.5rem;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .Putforwardbox {
+            margin-left: 4%;
+            margin-right: 4%;
+            background: #ffffff;
+            text-align: left;
+            color: #39393d;
+            margin-top: 1rem;
+            margin-bottom: 70px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .exchange {
+            margin-left: 4%;
+            margin-right: 4%;
+            background: #ffffff;
+            border-radius: 10px;
+            margin-top: 15px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        /* 全新设计的输入框样式 */
+        .amount-input-container {
+            position: relative;
+            margin: 20px 0;
+            border-radius: 10px;
+            background: rgb(255, 255, 240);
+            overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+            border: 1px solid #ff7e00;
+        }
+
+        .amount-prefix {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 22px;
+            font-weight: bold;
+            color: #454a6b;
+            z-index: 2;
+        }
+
+        .amount-input {
+            width: 100%;
+            border: none;
+            height: 60px;
+            background: transparent;
+            padding: 10px 20px 10px 45px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff7e00;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .amount-input::placeholder {
+            font-size: 14px;
+        }
+
+        .amount-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .amount-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgb(255, 244, 171);
+            outline: none;
+            margin: 15px 0;
+        }
+
+        .amount-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #ff7e00;
+            cursor: pointer;
+            box-shadow: 0 0 0 4px rgba(255, 126, 0, 0.3);
+            transition: all 0.2s;
+        }
+
+        .amount-slider::-webkit-slider-thumb:hover {
+            box-shadow: 0 0 0 6px rgba(255, 126, 0, 0.4);
+        }
+
+        /* 新的充值选项列表样式 */
+        .recharge-price-list {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .recharge-price-list ul {
+            width: 100%;
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .recharge-price-list ul li {
+            padding: 12px 2px;
+            font-size: 14px;
+            color: #454a6b;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            background: rgb(255, 255, 240);
+            border: 1px solid #ff7e00;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .recharge-price-list ul li .amount-value {
+            font-size: 14px;
+            font-weight: bold;
+            color: #ff7e00;
+        }
+
+        .recharge-price-list ul li .amount-bonus {
+            font-size: 12px;
+            color: #ff6b6b;
+            margin-top: 3px;
+        }
+
+        .recharge-price-list .cur {
+            color: #fff !important;
+            background: linear-gradient(135deg, #ff7e00, #ff7e00) !important;
+            box-shadow: 0 5px 15px rgba(255, 126, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .recharge-price-list .cur .amount-value {
+            color: #fff !important;
+        }
+
+        .recharge-price-list .cur .amount-bonus {
+            color: #fff !important;
+        }
+
+        .Putforwardbtn {
+            height: 3rem;
+            margin-top: 1rem;
+        }
+
+        .Putforwardbtn button {
+            width: 100%;
+            height: 3.5rem;
+            appearance: none;
+            background: linear-gradient(90deg, #ff7e00, #ff7e00);
+            outline: none;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            color: #fff;
+            letter-spacing: 1px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .Putforwardbtn button:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 8px rgba(29, 43, 237, 0.2);
+        }
+
+        .recharge-input {
+            width: 100%;
+            border: 1px solid #1d2bed;
+            height: 2.5rem;
+            line-height: 2.5rem;
+            display: inline-flex;
+            border-radius: 8px;
+            background: #fff;
+            margin-bottom: 10px;
+        }
+
+        .recharge-input span {
+            color: #8f8f8f;
+            width: 35%;
+            margin-left: 0.25rem;
+            margin-top: 0.25rem;
+            height: 2rem;
+            line-height: 2rem;
+            text-align: center;
+        }
+
+        .recharge-input select {
+            color: #1d2bed;
+            width: 60%;
+            margin: 0.25rem;
+            height: 2rem;
+            border: none;
+            background: #fff;
+        }
+
+        .navbar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            line-height: 45px;
+            z-index: 20;
+            background: #ffae00;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar .left {
+            width: auto;
+            height: 45px;
+            position: absolute;
+            left: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .left a {
+
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .left i {
+            margin-right: 3px;
+        }
+
+        .navbar .right {
+            width: 45px;
+            height: 45px;
+            position: absolute;
+            right: 15px;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .navbar .center {
+            text-align: center;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        .right img {
+            width: 26px;
+        }
+
+        .recharge-box-div {
+            border: 1px solid #e0e0f1;
+            display: flex;
+            flex-direction: row;
+            margin-top: 15px;
+            border-radius: 8px;
+            background: #fff;
+            padding: 12px;
+            line-height: 2em;
+        }
+
+        .recharge-box-div span {
+            margin-left: 10px;
+        }
+
+        .paytitle {
+            width: 33%;
+            color: #555;
+            font-weight: 600;
+        }
+
+        .Mylist {
+            width: 67%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mylabel {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        .myradio {
+            display: none
+        }
+
+        .myradioInput {
+            background-color: #fff;
+            border: 2px solid rgba(0, 0, 0, 0.15);
+            border-radius: 100%;
+            display: inline-block;
+            height: 20px;
+            margin-right: 10px;
+            vertical-align: middle;
+            width: 20px;
+            line-height: 1;
+            position: relative;
+        }
+
+        .myradio:checked+.myradioInput:after {
+            background-color: #1d2bed;
+            border-radius: 100%;
+            content: "";
+            display: inline-block;
+            height: 12px;
+            width: 12px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .myradio:checked+.myradioInput {
+            border: 2px solid #1d2bed;
+        }
+
+        /* 支付类型下拉框样式 */
+        .payment-select-container {
+            position: relative;
+            width: 100%;
+            margin-top: 5px;
+            z-index: 5;
+        }
+
+        .payment-select-header {
+            width: 100%;
+            height: 50px;
+            background: rgb(255, 255, 240);
+            border: 1px solid #ff7e00;
+            border-radius: 10px;
+            padding: 0 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-select-header:hover {
+            background: rgba(255, 126, 0, 0.05);
+        }
+
+        .payment-selected {
+            font-size: 16px;
+            color: #ff7e00;
+            font-weight: bold;
+        }
+
+        .payment-arrow {
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 10px solid #ff7e00;
+            transition: transform 0.3s ease;
+        }
+
+        .payment-select-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgb(255, 255, 240);
+            /* border: 1px solid #ff7e00; */
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 20;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-select-options.active {
+            max-height: 300px;
+        }
+
+        .payment-option {
+            padding: 12px 15px;
+            font-size: 15px;
+            color: #454a6b;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 126, 0, 0.1);
+        }
+
+        .payment-option:last-child {
+            border-bottom: none;
+        }
+
+        .payment-option:hover {
+            background: rgba(255, 126, 0, 0.1);
+        }
+
+        .payment-option.selected {
+            color: #ff7e00;
+            font-weight: bold;
+            background: rgba(255, 126, 0, 0.05);
+        }
+
+        .payment-radio {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            margin-right: 10px;
+            position: relative;
+        }
+
+        .payment-option.selected .payment-radio {
+            border-color: #ff7e00;
+        }
+
+        .payment-option.selected .payment-radio:after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff7e00;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        footer {
+    position: fixed; /* fixa na parte de baixo */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* ou qualquer cor desejada */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px 0;
+    border-top: 1px solid #ddd;
+    z-index: 1000;
+}
+
+footer .foot_bo {
+    flex: 1;
+    text-align: center;
+}
+
+footer .foot_bo img {
+    width: 24px;
+    height: 24px;
+    display: block;
+    margin: 0 auto 4px;
+}
+
+footer .foot_bo p {
+    margin: 0;
+    font-size: 12px;
+    color: #333;
+}
+
+
+    </style>
+</head>
+
+<body>
+    <div class="views">
+        <div class="navbar theme-white">
+            <div class="navbar-inner">
+                <div class="left">
+                    <a href="home.html" class="external link">
+    <img src="https://img.icons8.com/?size=60&id=60636&format=png" alt="Voltar" style="height: 24px; width: 24px;">
+
+
+                    </a>
+                </div>
+                <div class="center">Recarga</div>
+                <div class="right" onclick="window.location.href='registro.html'">
+                    <img src="https://image.shutterstock.com/image-vector/loading-bar-icons-website-load-150nw-2508563717.jpg">
+                </div>
+            </div>
+        </div>
+        <div class="navbar-fixed">
+            <div class="cz-index-top">
+                <p class="tixianlog-index-top-title">Saldo atual</p>
+                <p class="tixianlog-index-top-mull">AOA
+                    0
+                </p>
+            </div>
+            <div class="exchange">
+                <div style="width:100%">
+                    <div class="recharge-price-list">
+                        <ul>
+                            <li attr-num="50">
+                                <span class="amount-value">AOA 7500</span>
+                            </li>
+                            <li attr-num="150" class="cur">
+                                <span class="amount-value">AOA 23000</span>
+                            </li>
+                            <li attr-num="500">
+                                <span class="amount-value">AOA 100000</span>
+                            </li>
+                            <li attr-num="1000">
+                                <span class="amount-value">AOA 15000</span>
+                            </li>
+                            <li attr-num="3000">
+                                <span class="amount-value">AOA 30000</span>
+                            </li>
+                            <li attr-num="5000">
+                                <span class="amount-value">AOA 15000</span>
+                            </li>
+                            <li attr-num="7000">
+                                <span class="amount-value">AOA 15000</span>
+                            </li>
+                            <li attr-num="10000">
+                                <span class="amount-value">AOA 46000</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="amount-input-container">
+                        <span class="amount-prefix">AOA</span>
+                        <input type="number" name="amount" class="amount-input" placeholder="Por favor, insira a quantidade de recarga"
+                            value="150">
+                    </div>
+                    <input type="range" min="200" max="80000" value="500" step="10" class="amount-slider" id="amountSlider">
+                </div>
+                <div style="clear: both;"></div>
+                <div class="recharge-box-div">
+                    <span class="paytitle">Tipo de pagamento:</span>
+                    <div class="payment-select-container">
+                        <div class="payment-select-header" id="paymentSelectHeader">
+                            <span class="payment-selected" id="selectedPaymentText">Canal 1</span>
+                            <span class="payment-arrow"></span>
+                        </div>
+                        <div class="payment-select-options" id="paymentSelectOptions">
+                                                        <div class="payment-option  selected " data-value="qePay-620">
+                                <span class="payment-radio"></span>
+                                Canal 1
+                            </div>
+                                                    </div>
+                        <input type="hidden" name="payType" id="payTypeInput" value="qePay-620">
+                    </div>
+                </div>
+                <div class="Putforwardbtn">
+                    <button type="button" class="btn rechargeBtn">Recargar</button>
+                </div>
+            </div>
+            <div class="Putforwardbox">
+                <p>Dica:</p><p><br/></p><p>1. Valor mínimo de depósito: AOA 0</p><p><br/></p><p>2. Horário de depósito: Os depósitos podem ser feitos as 8hora do dia ate as 21h</p><p><br/></p><p>3. O valor da transferência deve ser exatamente igual ao valor da ordem de depósito criada. Caso contrário, o depósito pode não chegar.</p><p><br/></p><p>4. Ao fazer um depósito, crie um novo pedido e use a conta bancária fornecida pelo sistema para transferir os fundos. Evite usar contas antigas ou fazer transferências duplicadas.</p><p><br/></p><p>5. Assim que a transferência for concluída, os fundos serão creditados em sua conta dentro de 10 a 20 minutos. Se os fundos não chegarem dentro desse prazo, entre em contato com o suporte para obter assistência.</p><p><br/></p>            </div>
+            <div id='payu'>
+            </div>
+        </div>
+    </div>
+    
+    </script>
+    <style>
+    .game1 {
+        border-radius: 50%;
+        animation: rotate1 2s linear infinite;
+    }
+
+    @keyframes  rotate1 {
+        0% {
+            transform: rotateZ(0deg);
+        }
+
+        100% {
+            transform: rotateZ(360deg);
+        }
+    }
+</style>
+<footer>
+        <div class="foot_bo">
+        <a href="home.html">
+            <img src="https://roche-ec.cyou/static/home/img/dhl/0010.png" />
+            <p class="xz">Início</p>
+        </a>
+    </div>
+            <div class="foot_bo">
+        <a href="produto.html">
+            <img src="https://roche-ec.cyou/static/home/img/dhl/0012.png" />
+            <p>Ganhos</p>
+        </a>
+    </div>
+        <!--     <div class="foot_bo">
+        <a href="https://roche-ec.cyou/game/index">
+            <img src="/static/home/img/ico_zp.png" class="game1" />
+            <p>Jogo</p>
+        </a>
+    </div>
+     -->
+    <!--     <div class="foot_bo">
+        <a href="https://roche-ec.cyou/user/service">
+            <img src="/static/home/img/custemService2.png" class="" />
+            <p>atendimento ao Cliente</p>
+        </a>
+    </div>
+     -->
+    <!--     <div class="foot_bo">
+        <a href="https://roche-ec.cyou/treasure/index">
+            <img src="/static/home/img/p20.png" class="game1" />
+            <p>Tesouro</p>
+        </a>
+    </div>
+     -->
+        <div class="foot_bo">
+        <a href="equipe.html">
+            <img src="https://roche-ec.cyou/static/home/img/dhl/0014.png" />
+            <p>Team</p>
+        </a>
+    </div>
+        <!-- -->
+    <!--    <div class="foot_bo">-->
+    <!--        <a href="https://roche-ec.cyou/redpacket/index">-->
+    <!--            <img src="/static/home/img/hb3.png"/>-->
+    <!--            <p>Reward</p>-->
+    <!--        </a>-->
+    <!--    </div>-->
+    <!-- -->
+        <div class="foot_bo">
+        <a href="perfil.html">
+            <img src="https://roche-ec.cyou/static/home/img/dhl/0016.png" />
+            <p>Meu</p>
+        </a>
+    </div>
+    </footer></body>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const userId = localStorage.getItem("user_id");
+
+    if (!userId) {
+        console.error("ID do usuário não encontrado no localStorage.");
+        return;
+    }
+
+    fetch(`https://api-wped.onrender.com/user/${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.saldo !== undefined) {
+                const saldoElement = document.querySelector(".tixianlog-index-top-mull");
+                if (saldoElement) {
+                    saldoElement.textContent = `AOA ${parseFloat(data.saldo).toLocaleString('pt-AO')}`;
+                }
+            } else {
+                console.error("Resposta da API inválida:", data);
+            }
+        })
+        .catch(error => {
+            console.error("Erro ao buscar o saldo:", error);
+        });
+});
+</script>
+<script>
+  document.querySelector('.rechargeBtn').addEventListener('click', function () {
+    // Pega o valor atual do input
+    const valor = parseInt(document.querySelector('.amount-input').value);
+
+    if (!valor || valor <= 0) {
+      alert("Por favor, insira um valor válido.");
+      return;
+    }
+
+    // Salva no localStorage
+    localStorage.setItem("valor_recarga", valor);
+
+    // Redireciona para a próxima página
+    window.location.href = "contas.html";
+  });
+</script>
+
+
+    <script>
+    // Quando o usuário clica em um valor pré-definido
+    document.querySelectorAll('.recharge-price-list li').forEach(item => {
+        item.addEventListener('click', function () {
+            // Remove a classe cur de todos
+            document.querySelectorAll('.recharge-price-list li').forEach(li => li.classList.remove('cur'));
+            // Adiciona a classe cur ao item clicado
+            this.classList.add('cur');
+
+            // Extrai o número do valor (removendo "AOA")
+            const valueText = this.querySelector('.amount-value').textContent.replace('AOA', '').trim();
+            const valueNumber = parseInt(valueText);
+
+            // Define esse valor no input e no slider
+            document.querySelector('.amount-input').value = valueNumber;
+            document.getElementById('amountSlider').value = valueNumber;
+        });
+    });
+
+    // Quando o input for alterado manualmente, atualiza o slider
+    document.querySelector('.amount-input').addEventListener('input', function () {
+        const value = parseInt(this.value);
+        document.getElementById('amountSlider').value = value;
+        // Remove seleção ativa dos valores da lista
+        document.querySelectorAll('.recharge-price-list li').forEach(li => li.classList.remove('cur'));
+    });
+
+    // Quando o slider for alterado, atualiza o input
+    document.getElementById('amountSlider').addEventListener('input', function () {
+        document.querySelector('.amount-input').value = this.value;
+        // Remove seleção ativa dos valores da lista
+        document.querySelectorAll('.recharge-price-list li').forEach(li => li.classList.remove('cur'));
+    });
+    
+</script>
+
+
+</html>

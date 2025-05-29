@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="pt">
+
+<head>
+    <meta -equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>Roche Entrar</title>
+    <meta -equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="wap-font-scale" content="no">
+    <link rel="stylesheet" href="/static/home/css/framework7.ios.min.css">
+    <link rel="stylesheet" href="/static/home/css/app.css?v=5.8">
+    <link rel="stylesheet" href="/static/home/css/iconfont.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(180deg, #ffae00, rgba(255, 215, 0, 0));
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            color: #333;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .login_logo {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 0 30px;
+        }
+
+        .login_logo img {
+            width: 180px;
+            height: auto;
+        }
+
+        .login_form {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        .input-control {
+            width: 100%;
+            height: 50px;
+            border: 1px solid #ff7e00;
+            border-radius: 10px;
+            position: relative;
+            background: rgb(255, 255, 240);
+            overflow: hidden;
+        }
+
+        .input-control i {
+            position: absolute;
+            left: 15px;
+            top: 70%;
+            transform: translateY(-50%);
+            color: #ff7e00;
+            font-size: 18px;
+        }
+
+        .inputfield {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: transparent;
+            padding: 0 15px 0 45px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .inputfield:focus {
+            outline: none;
+        }
+
+        .loginfield {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+
+        .loginfield div {
+            color: #666 !important;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .loginfield input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .loginfield a {
+            color: #ff7e00 !important;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .center {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .space-20 {
+            height: 20px;
+        }
+
+        .btn_submit_my {
+            display: block;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            background: linear-gradient(90deg, #ff7e00, #ff7e00);
+            border-radius: 25px;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(255, 126, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn_submit_my:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 126, 0, 0.4);
+        }
+
+        .login_laa {
+            display: block;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            background: rgba(255, 126, 0, 0.1);
+            border: 1px solid #ff7e00;
+            border-radius: 25px;
+            text-align: center;
+            color: #ff7e00;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 15px auto 0;
+            transition: all 0.3s;
+        }
+
+        .login_laa:hover {
+            background: rgba(255, 126, 0, 0.2);
+        }
+
+        .toast {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+        }
+
+        .toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        .toast.error {
+            background-color: #ff4444;
+        }
+
+        .toast.success {
+            background-color: #00C851;
+        }
+
+        @keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+
+        .icon-mobile::after {
+            content: "+244";
+        }
+
+        #mobile {
+            padding-left: 75px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login_logo">
+        <img src="https://roche-ec.cyou/static/home/img/dhl/0033.png" />
+    </div>
+    <div class="login_form">
+        <form name="form" method="post" id="form">
+            <div class="input-container">
+                <div class="input-control">
+                    <i class="icon iconfont icon-mobile"></i>
+                    <input class="inputfield" id="mobile" type="text" name="mobile" minlength="9"
+                        maxlength="9" placeholder="Número de telefone">
+                </div>
+            </div>
+            <div class="input-container">
+                <div class="input-control">
+                    <i class="icon iconfont icon-mima"></i>
+                    <input class="inputfield" type="password" id="password" name="password" maxlength="16"
+                        placeholder="Senha">
+                </div>
+            </div>
+            <div class="row loginfield">
+                <div>
+                    <input type="checkbox" id="remember_password">
+                    Lembrar senha
+                </div>
+            </div>
+            <div class="center">
+                <div class="space-20"></div>
+                <button type="button" class="btn_submit_my">Entrar</button>
+            </div>
+        </form>
+        <a href="registrar.html" class="login_laa">Registrar</a>
+    </div>
+    
+    <div id="toast" class="toast"></div>
+
+    <script type="text/javascript" src="/static/home/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/static/home/js/layer.js"></script>
+    
+    <script>
+        // Função para mostrar toast
+        function showToast(message, type) {
+            const toast = document.getElementById('toast');
+            if (toast) {
+                toast.textContent = message;
+                toast.className = 'toast show ' + type;
+                
+                setTimeout(() => {
+                    toast.className = toast.className.replace('show', '');
+                }, 3000);
+            }
+        }
+
+        // Validação de telefone (9 dígitos)
+        function validatePhone(phone) {
+            return /^\d{9}$/.test(phone);
+        }
+
+        // Função de login com API
+        function login() {
+            const phoneInput = document.getElementById('mobile');
+            const passwordInput = document.getElementById('password');
+            
+            const phone = phoneInput.value.trim();
+            const password = passwordInput.value.trim();
+            
+            if (!phone || !password) {
+                showToast('Por favor, preencha todos os campos.', 'error');
+                return;
+            }
+            
+            if (!validatePhone(phone)) {
+                showToast('Número inválido. Deve conter 9 dígitos.', 'error');
+                return;
+            }
+            
+            // Mostrar loading
+            const btnLogin = document.querySelector('.btn_submit_my');
+            if (btnLogin) {
+                btnLogin.disabled = true;
+                btnLogin.textContent = 'Carregando...';
+            }
+            
+            // Chamada para a API
+            fetch('https://api-wped.onrender.com/user?telefone=' + phone)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na resposta da API');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Verifica se data é um array (pode ser um objeto)
+                    const users = Array.isArray(data) ? data : [data];
+                    
+                    if (users.length === 0 || !users[0]) {
+                        showToast('Usuário não encontrado.', 'error');
+                        return;
+                    }
+                    
+                    const user = users.find(u => u.senha === password);
+                    
+                    if (user) {
+                        showToast('Login realizado com sucesso!', 'success');
+                        localStorage.setItem("user_data", JSON.stringify(user));
+                        localStorage.setItem("user_id", user.id);
+                        setTimeout(() => window.location.href = 'home.html', 1000);
+                    } else {
+                        showToast('Senha incorreta.', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    showToast('Erro ao conectar com o servidor.', 'error');
+                })
+                .finally(() => {
+                    if (btnLogin) {
+                        btnLogin.disabled = false;
+                        btnLogin.textContent = 'Entrar';
+                    }
+                });
+        }
+
+        // Configuração dos eventos quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', function() {
+            // Evento de clique no botão de login
+            document.querySelector('.btn_submit_my').addEventListener('click', login);
+            
+            // Formatação do campo de telefone (apenas números, máximo 9 dígitos)
+            const phoneInput = document.getElementById('mobile');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function(e) {
+                    // Remove tudo que não for dígito
+                    this.value = this.value.replace(/\D/g, '');
+                    // Limita a 9 caracteres
+                    if (this.value.length > 9) {
+                        this.value = this.value.slice(0, 9);
+                    }
+                });
+                
+                // Impede colar texto não numérico
+                phoneInput.addEventListener('paste', function(e) {
+                    e.preventDefault();
+                    const text = (e.clipboardData || window.clipboardData).getData('text');
+                    const numbers = text.replace(/\D/g, '');
+                    const currentValue = this.value;
+                    const newValue = currentValue + numbers;
+                    this.value = newValue.slice(0, 9);
+                });
+            }
+            
+            // Verificar se há credenciais salvas
+            const rememberCheckbox = document.getElementById('remember_password');
+            if (rememberCheckbox && localStorage.getItem('remember_credentials') === 'true') {
+                rememberCheckbox.checked = true;
+                const savedPhone = localStorage.getItem('saved_phone');
+                const savedPassword = localStorage.getItem('saved_password');
+                if (savedPhone && phoneInput) phoneInput.value = savedPhone;
+                if (savedPassword && passwordInput) passwordInput.value = savedPassword;
+            }
+            
+            // Salvar credenciais se o checkbox estiver marcado
+            if (rememberCheckbox) {
+                rememberCheckbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        localStorage.setItem('remember_credentials', 'true');
+                        localStorage.setItem('saved_phone', phoneInput.value);
+                        localStorage.setItem('saved_password', passwordInput.value);
+                    } else {
+                        localStorage.removeItem('remember_credentials');
+                        localStorage.removeItem('saved_phone');
+                        localStorage.removeItem('saved_password');
+                    }
+                });
+            }
+        });
+        
+    </script>
+    
+</body>
+</html>

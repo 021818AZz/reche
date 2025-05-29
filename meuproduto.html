@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html class="pixel-ratio-3 retina android android-5 android-5-0 watch-active-state">
+
+<head>
+    <meta -equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta -equiv="pragma" content="no-cache">
+    <meta -equiv="cache-control" content="no-cache">
+    <meta -equiv="expires" content="0">
+    <title>Meus Produtos</title>
+    <link rel="stylesheet" href="/static/home/css/app.css?v=5.8">
+    <link rel="stylesheet" href="/static/home/css/iconfont.css">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(180deg, #ffae00, rgba(255, 215, 0, 0));
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            min-height: 100vh;
+        }
+
+        /* Modern navbar */
+        .navbar {
+            background: #ffae00;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar-inner {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            height: 50px;
+        }
+
+        .left a {
+            color: #333333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .center {
+            flex: 1;
+            text-align: center;
+            color: #333;
+            font-weight: 500;
+            font-size: 17px;
+        }
+
+        .right {
+            width: 40px;
+        }
+
+        /* Balance card */
+        .page-content {
+            padding: 65px 15px 70px;
+        }
+
+        .balance-card {
+            background: linear-gradient(135deg, #ff7e00, #ff7e00);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(255, 126, 0, 0.2);
+        }
+
+        .balance-header {
+            margin-bottom: 10px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .balance-amount {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .bg-circle {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            right: -50px;
+            bottom: -50px;
+            z-index: 0;
+        }
+
+        .small-circle {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            left: -20px;
+            top: -20px;
+            z-index: 0;
+        }
+
+        /* Product items */
+        .product-list {
+            margin-bottom: 60px;
+        }
+
+        .product-item {
+            background: #ffffff;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            position: relative;
+            padding: 15px;
+        }
+
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .product-name {
+            font-weight: 600;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: #ff7e00;
+        }
+
+        .product-details {
+            margin-top: 10px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .detail-label {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .detail-value {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .progress-container {
+            margin-top: 15px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background-color: #e9ecef;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #28a745;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        /* Empty state */
+        .empty-state {
+            padding: 40px 0;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            display: none;
+        }
+
+        .empty-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 5px 0;
+            border-top: 1px solid #ddd;
+            z-index: 1000;
+        }
+
+        footer .foot_bo {
+            flex: 1;
+            text-align: center;
+        }
+
+        footer .foot_bo img {
+            width: 24px;
+            height: 24px;
+            display: block;
+            margin: 0 auto 4px;
+        }
+
+        footer .foot_bo p {
+            margin: 0;
+            font-size: 12px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="views">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="left">
+                    <a href="home.html" class="external link">
+                        <img src="https://img.icons8.com/?size=60&id=60636&format=png" alt="Voltar" style="height: 24px; width: 24px;">
+                    </a>
+                </div>
+                <div class="center">Meus Produtos</div>
+                <div class="right"></div>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <!-- Balance Card -->
+            <div class="balance-card">
+                <div class="small-circle"></div>
+                <div class="bg-circle"></div>
+                <div class="balance-header">Rendimento Total</div>
+                <div class="balance-amount" id="totalEarnings">AOA 0.00</div>
+            </div>
+
+            <!-- Product List -->
+            <div class="product-list" id="productList"></div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState">
+                <div class="empty-icon">
+                    <i class="icon iconfont icon-empty"></i>
+                </div>
+                <div>Você ainda não adquiriu nenhum produto</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="height: 60px;"></div>
+    
+    <footer>
+        <div class="foot_bo">
+            <a href="home.html">
+                <img src="https://roche-ec.cyou/static/home/img/dhl/0010.png" />
+                <p class="xz">Início</p>
+            </a>
+        </div>
+        <div class="foot_bo">
+            <a href="produto.html">
+                <img src="https://roche-ec.cyou/static/home/img/dhl/0012.png" />
+                <p>Ganhos</p>
+            </a>
+        </div>
+        <div class="foot_bo">
+            <a href="equipe.html">
+                <img src="https://roche-ec.cyou/static/home/img/dhl/0014.png" />
+                <p>Team</p>
+            </a>
+        </div>
+        <div class="foot_bo">
+            <a href="perfil.html">
+                <img src="https://roche-ec.cyou/static/home/img/dhl/0016.png" />
+                <p>Meu</p>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar se o usuário está logado
+            const userId = localStorage.getItem("user_id");
+            if (!userId) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Carregar produtos do usuário
+            fetchUserProducts(userId);
+        });
+
+        function fetchUserProducts(userId) {
+            fetch(`https://api-wped.onrender.com/produto?userId=${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    displayProducts(data);
+                    calculateTotalEarnings(data);
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar produtos:', error);
+                    document.getElementById('emptyState').style.display = 'block';
+                });
+        }
+
+        function displayProducts(products) {
+            const productList = document.getElementById('productList');
+            const emptyState = document.getElementById('emptyState');
+
+            // Limpar lista
+            productList.innerHTML = '';
+
+            if (products.length === 0) {
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+
+            // Ordenar por data (mais recente primeiro)
+            products.sort((a, b) => new Date(b.dataCompra) - new Date(a.dataCompra));
+
+            // Adicionar cada produto à lista
+            products.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-item';
+                
+                // Calcular tempo decorrido e progresso
+                const purchaseDate = new Date(product.dataCompra);
+                const currentDate = new Date();
+                const daysPassed = Math.floor((currentDate - purchaseDate) / (1000 * 60 * 60 * 24));
+                const progressPercentage = Math.min((daysPassed / product.prazo) * 100, 100);
+                
+                productItem.innerHTML = `
+                    <div class="product-header">
+                        <div class="product-name">${product.produto}</div>
+                        <div class="product-price">AOA ${product.preco.toFixed(2)}</div>
+                    </div>
+                    
+                    <div class="product-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Rendimento diário:</span>
+                            <span class="detail-value">AOA ${product.renda_diaria.toFixed(2)}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Rendimento total:</span>
+                            <span class="detail-value">AOA ${product.renda_total.toFixed(2)}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Tempo decorrido:</span>
+                            <span class="detail-value">${daysPassed} dias de ${product.prazo}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Progresso</span>
+                            <span>${Math.round(progressPercentage)}%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${progressPercentage}%"></div>
+                        </div>
+                    </div>
+                `;
+                
+                productList.appendChild(productItem);
+            });
+        }
+
+        function calculateTotalEarnings(products) {
+            let total = 0;
+            products.forEach(product => {
+                total += product.renda_total;
+            });
+            
+            document.getElementById('totalEarnings').textContent = `AOA ${total.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>

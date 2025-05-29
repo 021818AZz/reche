@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html class="pixel-ratio-3 retina android android-5 android-5-0 watch-active-state">
+
+<head>
+    <meta -equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta -equiv="pragma" content="no-cache">
+    <meta -equiv="cache-control" content="no-cache">
+    <meta -equiv="expires" content="0">
+    <title>roche Dispositivo</title>
+    <!--<link rel="stylesheet" href="/static/home/css/framework7.ios.min.css">-->
+    <link rel="stylesheet" type="text/css" href="/static/home/css/app.css?v=5.8">
+    <link rel="stylesheet" type="text/css" href="/static/home/css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/css/dropload.css" />
+    <script type="text/javascript" src="/static/home/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/static/home/js/dropload.min.js"></script>
+    <script type="text/javascript" src="/static/home/layui/layui.js"></script>
+    <script type="text/javascript">
+        var translations = {
+            currencySymbol: "R$",
+            dayIncome: "renda diária",
+            hourlyIncome: "Ganhos por hora",
+            estimatedIncome: "Ganhos estimados",
+            breedingPrice: "Preço de reprodução",
+            workingFor: "Trabalhando para",
+            hours: "Horas",
+            atWork: "Trabalhando",
+            stopWork: "Parar de trabalhar",
+            income: "Ganhos"
+        };
+    </script>
+    <style type="text/css">
+        body {
+            background: linear-gradient(180deg, #ffae00, rgba(255, 215, 0, 0));
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .views {
+            z-index: 0;
+        }
+
+        .page-index-shop {
+            padding-bottom: 0.5rem;
+            /* padding: 50px 0 110px 0; */
+        }
+
+        .bxxxx-top a {
+            font-size: 14px;
+            background: #5946cb;
+            width: 100px;
+            height: 30px;
+            display: inline-block;
+            line-height: 30px;
+            border-radius: 30px;
+            text-align: center;
+            margin-left: 10px;
+            margin-top: -2px;
+        }
+
+        .page-index-shop-ul {
+            list-style: none;
+            padding: 0 15px;
+        }
+
+        .page-index-shop-ul li {
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            background: #fff;
+        }
+
+        /* 卡片头部 - 项目图片和名称 */
+        .page-index-shop-top {
+            display: flex;
+            padding: 5px;
+            align-items: center;
+            background-color: white;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+        }
+
+        .page-index-shop-top img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 3px solid #f0f0f0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .paga-index-shop-top-title {
+            flex: 1;
+        }
+
+        .page-index-shop-top-title-a {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        /* 收入部分 - 中间区域 */
+        .page-index-shop-shouyi {
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            background: white;
+        }
+
+        .page-index-shop-shouyi ul {
+            display: flex;
+            list-style: none;
+            justify-content: space-around;
+            padding: 0;
+            margin: 0;
+        }
+
+        .page-index-shop-shouyi ul li {
+            flex: 1;
+            text-align: center;
+            box-shadow: none;
+            margin: 0 5px;
+            background-color: #fff5e1;
+            border-radius: 10px;
+            padding: 12px 5px;
+            position: relative;
+        }
+
+        .page-index-shop-sy-sz {
+            color: #ff8400;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .page-index-shop-sy-wz {
+            color: #777;
+            font-size: 12px;
+        }
+
+        /* 底部信息区域 */
+        .page-index-shop-top-b {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 15px;
+            background-color: #f5f5f5;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #eee;
+            align-items: center;
+        }
+
+        .page-index-shop-top-b .box1 {
+            flex: 1;
+        }
+
+        .page-index-shop-top-b .box1:last-child {
+            text-align: right;
+            font-weight: bold;
+            color: #ff8400;
+        }
+
+        .robot-index-lqsy {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        .robot-index-completion {
+            background-color: #ff5722 !important;
+        }
+
+        .footerbtn {
+            position: fixed;
+            width: 50%;
+            display: flex;
+            flex-direction: row;
+            background: linear-gradient(180deg, #ffba00, #ff8400);
+            line-height: 50px;
+            color: #ffffff;
+            bottom: 60px;
+            margin-left: 25%;
+            margin-bottom: 30px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(29, 43, 237, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .footerbtn:active {
+            transform: scale(0.98);
+        }
+
+        .footerbtn a {
+            color: #ffffff;
+            display: block;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0 auto;
+        }
+
+        .my-device-title-container {
+            width: 100%;
+            height: 140px;
+            position: relative;
+        }
+
+        .my-device-title-content {
+            width: 94%;
+            height: 80px;
+            background: linear-gradient(to right, #ff770c, #ff9800);
+            background-size: 100% 100%;
+            position: absolute;
+            top: 50px;
+            left: 3%;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(255, 119, 12, 0.3);
+        }
+
+        .my-device-title-content-profit {
+            width: 350px;
+            height: 80px;
+            font-size: 20px;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            color: #ffffff;
+        }
+
+        .my-device-title-content-profit-title {
+            width: 80%;
+            height: 100%;
+            border-right: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .my-device-title-content-profit-content {
+            width: 80%;
+            height: 100%;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .navbar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            line-height: 40px;
+            z-index: 20;
+            background: #ffae00;
+            position: fixed !important;
+        }
+
+        .navbar .left {
+            width: 50px;
+            height: 40px;
+            position: absolute;
+            left: 10px;
+        }
+
+        .navbar .right {
+            width: 50px;
+            height: 40px;
+            position: absolute;
+            right: 10px;
+        }
+
+        .dropload-down {
+            text-align: center;
+            padding: 15px 0;
+            color: #888;
+        }
+
+        .rotate-scale-up {
+            -webkit-animation: rotate-scale-up 0.65s linear both;
+            animation: rotate-scale-up 0.65s linear both;
+        }
+
+        /* ----------------------------------------------
+         * 旋转缩放动画
+         * ---------------------------------------------- */
+        @-webkit-keyframes rotate-scale-up {
+            0% {
+                -webkit-transform: scale(1) rotateZ(0);
+                transform: scale(1) rotateZ(0);
+            }
+
+            50% {
+                -webkit-transform: scale(2) rotateZ(180deg);
+                transform: scale(2) rotateZ(180deg);
+            }
+
+            100% {
+                -webkit-transform: scale(1) rotateZ(360deg);
+                transform: scale(1) rotateZ(360deg);
+            }
+        }
+
+        @keyframes  rotate-scale-up {
+            0% {
+                -webkit-transform: scale(1) rotateZ(0);
+                transform: scale(1) rotateZ(0);
+            }
+
+            50% {
+                -webkit-transform: scale(2) rotateZ(180deg);
+                transform: scale(2) rotateZ(180deg);
+            }
+
+            100% {
+                -webkit-transform: scale(1) rotateZ(360deg);
+                transform: scale(1) rotateZ(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar theme-white">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="home.html" class="external link">
+                   <img src="https://img.icons8.com/?size=60&id=60636&format=png" alt="Voltar" style="height: 24px; width: 24px;">
+                </a>
+            </div>
+            <div class="center" style="left: -24px;"></div>
+            <div class="right"></div>
+        </div>
+    </div>
+    <!-- 1 -->
+    <div class="my-device-title-container">
+        <div class="my-device-title-content">
+            <div class="my-device-title-content-profit">
+                <div class="my-device-title-content-profit-title">
+                    <p style="margin-top: 10px;">0</p>
+                    <p style="margin-top: 10px;">Meus Projetos</p>
+                </div>
+                <div class="my-device-title-content-profit-content">
+                    <p style="margin-top: 10px;">
+                        R$ 0.00
+                    </p>
+                    <p style="margin-top: 10px;">Renda do projeto</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page navbar-fixed">
+        <div class="page-index-shop">
+            <ul class="page-index-shop-ul">
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="footerbtn" id="settlementBtn" onclick="settlement();">
+        <a href="#">R$0.00
+            Receber</a>
+    </div>
+</body>
+<script type="text/javascript">
+    layui.use(['form', 'layer'], function() {
+        $ = layui.jquery;
+        var form = layui.form,
+            layer = layui.layer;
+    });
+    $(function() {
+        var page = 0;
+        var _token = "qTROmCeP0f8CK86UgdxC4RIi0lbE06vCkuLxpQOA";
+
+        // 添加初始数据加载函数
+        function loadInitialData() {
+            page = 1;
+            var data = {
+                page: page,
+                _token: _token
+            };
+
+            $.post("https://roche-ec.cyou/device/index", data, function(result) {
+
+                if (result.code == 201) {
+                    layer.msg("langlangshan.login_invalid", {
+                        time: 1000,
+                        shade: [0.5, '#000']
+                    }, function() {
+                        location.href = "https://roche-ec.cyou/login/index?redirect=https%3A%2F%2Froche-ec.cyou%2Fdevice%2Findex";
+                    });
+                    return false;
+                }
+
+                if (result.code == 200) {
+                    var html = '';
+                    var dataLen = result.data.length;
+
+                    for (var i = 0; i < dataLen; i++) {
+                        html += '<li>'
+                        // 头部 - 项目图片和名称
+                        html += '<div class="page-index-shop-top">'
+                        html += '<img src="' + result.data[i].deviceImg + '" />'
+                        html += '<div class="paga-index-shop-top-title">'
+                        html += '<p class="page-index-shop-top-title-a">' + result.data[i].device + '</p>'
+
+                        if (result.data[i].collectiondate) {
+                            html += '<span style="color: #777; font-size: 12px;">' + result.data[i].collectiondate + '</span>'
+                        }
+
+                        html += '</div>'
+                        html += '</div>'
+
+                        // 中间 - 收入信息
+                        html += '<div class="page-index-shop-shouyi">'
+                        html += '<ul>'
+                        html += '<li>'
+                        html += '<p class="page-index-shop-sy-sz">' + translations.currencySymbol + parseFloat(result.data[i].profit).toFixed(2) + '</p>'
+                        html += "<p class='page-index-shop-sy-wz'>" + translations.hourlyIncome + "</p>"
+                        html += '</li>'
+                        html += '<li>'
+                        html += '<p class="page-index-shop-sy-sz">' + translations.currencySymbol + parseFloat(result.data[i].income).toFixed(2) + '</p>'
+                        html += "<p class='page-index-shop-sy-wz'>" + translations.estimatedIncome + "</p>"
+                        html += '</li>'
+                        html += '<li>'
+                        html += '<p class="page-index-shop-sy-sz">' + translations.currencySymbol + parseFloat(result.data[i].price).toFixed(2) + '</p>'
+                        html += "<p class='page-index-shop-sy-wz'>" + translations.breedingPrice + "</p>"
+                        html += '</li>'
+                        html += '</ul>'
+                        html += '</div>'
+
+                        // 底部 - 收入总计
+                        html += '<div class="page-index-shop-top-b">'
+                        html += '<div class="box1">' + translations.income + '</div>'
+                        if (result.data[i].incomecount) {
+                            html += "<div class='box1'>" + translations.currencySymbol + parseFloat(result.data[i].incomecount).toFixed(2) + '</div>'
+                        } else {
+                            html += "<div class='box1'>" + translations.currencySymbol + "0.00</div>"
+                        }
+                        html += '</div>'
+                        html += '</li>'
+                    }
+
+                    $('.page-index-shop .page-index-shop-ul').html(html); // 使用html()而不是append()
+                } else {
+
+                }
+            }, "json").fail(function(xhr, status, error) {
+
+            });
+        }
+
+        // 页面加载完成后立即加载数据
+        loadInitialData();
+
+        // 现有的下拉加载更多逻辑
+        $('.page-index-shop').dropload({
+            scrollArea: window,
+            domDown: {
+                domClass: 'dropload-down',
+                domRefresh: "<div class='dropload-refresh'>↑Puxe para mais</div>",
+                domLoad: "<div class='dropload-load'><span class='loading'></span>Carregando...</div>",
+                domNoData: "<div class='dropload-noData zhibo-index-bot-ts'>Nenhum mais dados</div>",
+            },
+            loadDownFn: function(me) {
+                page++;
+                var html = '';
+                var data = {
+                    page: page,
+                    _token: _token
+                };
+
+                $.post("https://roche-ec.cyou/device/index", data, function(result) {
+
+                    if (result.code == 201) {
+                        layer.msg("langlangshan.login_invalid", {
+                            time: 1000,
+                            shade: [0.5, '#000']
+                        }, function() {
+                            location.href = "https://roche-ec.cyou/login/index?redirect=https%3A%2F%2Froche-ec.cyou%2Fdevice%2Findex";
+                        });
+                        return false;
+                    }
+                    if (result.code == 200) {
+                        var dataLen = result.data.length;
+                        for (var i = 0; i < dataLen; i++) {
+                            html += '<li>'
+
+                            // 头部 - 项目图片和名称
+                            html += '<div class="page-index-shop-top">'
+                            html += '<img src="' + result.data[i].deviceImg + '" />'
+                            html += '<div class="paga-index-shop-top-title">'
+                            html += '<p class="page-index-shop-top-title-a">' + result.data[i].device + '</p>'
+
+                            // 如果有状态信息，可以添加在这里
+                            if (result.data[i].collectiondate) {
+                                html += '<span style="color: #777; font-size: 12px;">' + result.data[i].collectiondate + '</span>'
+                            }
+
+                            html += '</div>'
+                            html += '</div>'
+
+                            // 中间 - 收入信息
+                            html += '<div class="page-index-shop-shouyi">'
+                            html += '<ul>'
+                            html += '<li>'
+                            html += '<p class="page-index-shop-sy-sz">' + translations
+                                .currencySymbol + parseFloat(result.data[i].profit)
+                                .toFixed(2) + '</p>'
+                            html +=
+                                "<p class='page-index-shop-sy-wz'>" + translations
+                                .hourlyIncome + "</p>"
+                            html += '</li>'
+                            html += '<li>'
+                            html += '<p class="page-index-shop-sy-sz">' + translations
+                                .currencySymbol + parseFloat(result.data[i].income).toFixed(2) +
+                                '</p>'
+                            html +=
+                                "<p class='page-index-shop-sy-wz'>" + translations
+                                .estimatedIncome + "</p>"
+                            html += '</li>'
+                            html += '<li>'
+                            html += '<p class="page-index-shop-sy-sz">' + translations
+                                .currencySymbol + parseFloat(result.data[i].price).toFixed(2) +
+                                '</p>'
+                            html +=
+                                "<p class='page-index-shop-sy-wz'>" + translations
+                                .breedingPrice + "</p>"
+                            html += '</li>'
+                            html += '</ul>'
+                            html += '</div>'
+
+                            // 底部 - 收入总计
+                            html += '<div class="page-index-shop-top-b">'
+                            html += '<div class="box1">' + translations.income + '</div>'
+                            if (result.data[i].incomecount) {
+                                html += "<div class='box1'>" + translations.currencySymbol +
+                                    parseFloat(result.data[i].incomecount).toFixed(2) + '</div>'
+                            } else {
+                                html += "<div class='box1'>" + translations.currencySymbol + "0.00</div>"
+                            }
+                            html += '</div>'
+
+                            html += '</li>'
+                        }
+                        me.noData(false);
+                    } else {
+                        me.lock();
+                        me.noData(true);
+                    }
+                    $('.page-index-shop .page-index-shop-ul').append(html);
+                    me.resetload();
+                }, "json");
+            }
+        });
+
+    });
+
+
+    //Settlement proceeds
+    var _submit = true;
+
+    // 添加按钮动画
+    document.getElementById('settlementBtn').addEventListener('click', function() {
+        this.classList.add('rotate-scale-up');
+
+        // 动画结束后移除类，以便下次点击再次触发
+        setTimeout(function() {
+            document.getElementById('settlementBtn').classList.remove('rotate-scale-up');
+        }, 650); // 与新动画持续时间相同 0.65s = 650ms
+    });
+
+    function settlement() {
+        if (_submit == true) {
+            _submit = false;
+            var loading = layer.load(2, {
+                shade: [0.5, '#393D49']
+            });
+        } else {
+            return;
+        }
+        var _token = "qTROmCeP0f8CK86UgdxC4RIi0lbE06vCkuLxpQOA";
+        var data = {
+            _token: _token
+        };
+        $.post("https://roche-ec.cyou/user/settlement", data, function(result) {
+            layer.close(loading);
+
+            if (result.code == 200) {
+                layer.msg("Sucesso", {
+                    time: 2000
+                }, function() {
+                    location.href = "https://roche-ec.cyou/device/index";
+                });
+            } else {
+                layer.msg(result.msg, {
+                    time: 2000
+                }, function() {
+                    _submit = true;
+                });
+
+            }
+        }, "json");
+    }
+</script>
+
+</html>

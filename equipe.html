@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html class="pixel-ratio-3 retina android android-5 android-5-0 watch-active-state">
+
+<head>
+    <meta -equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta -equiv="pragma" content="no-cache">
+    <meta -equiv="cache-control" content="no-cache">
+    <meta -equiv="expires" content="0">
+    <title>roche Compartilhar</title>
+    <link rel="stylesheet" href="/static/home/css/app.css?v=5.8">
+    <script type="text/javascript" src="/static/home/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/static/home/js/clipboard.min.js"></script>
+    <script type="text/javascript" src="/static/home/js/layer.js"></script>
+    <script type="text/javascript" src="/static/home/js/qrcode.min.js"></script>
+    <style type="text/css">
+        body {
+            background: linear-gradient(180deg, #ffae00, rgba(255, 215, 0, 0));
+        }
+
+        .share-title {
+            width: 92%;
+            background: #ffffff;
+            color: #39393d;
+            font-size: 16px;
+            text-align: center;
+            padding: 30px 4% 0px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .share-top {
+            width: 92%;
+            background: #ffffff;
+            padding-top: 1px;
+            margin: 15px auto 0;
+            border-radius: 5px;
+        }
+
+        .share-top-1 {
+            margin-left: 20px;
+            margin-top: 20px;
+            width: 100%;
+            color: #fff;
+        }
+
+        .share-top-1 p {
+            font-size: 16px;
+        }
+
+        .share-top-2 {
+            margin-left: 20px;
+            margin-top: 20px;
+            width: 100%;
+            color: #fff;
+        }
+
+        .share-top-2 p {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .share-top-3 {
+            width: 100%;
+            display: flex;
+        }
+
+        .share-top-3-left {
+            width: 100%;
+            height: 100%;
+        }
+
+        .share-top-3-right {
+            width: 40%;
+            height: 100%;
+        }
+
+        .share-top-3-right img {
+            width: 90%;
+            height: 90%;
+            margin-left: 5%;
+            margin-top: 5%;
+        }
+
+        .share-top-3-left-box {
+            width: 100%;
+            height: 70px;
+            border-radius: 5px;
+            display: flex;
+        }
+
+        .share-top-3-left-box-left {
+            width: 65%;
+            height: 100%;
+        }
+
+        .share-top-3-left-box-right {
+            width: 35%;
+            height: 100%;
+        }
+
+        .share-top-3-left-box-left-top {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin-top: 10px;
+            margin-left: 10px;
+            font-size: 16px;
+            color: #ff7e00;
+        }
+
+        .share-top-3-left-box-left-bottom {
+            margin-top: 10px;
+            margin-left: 10px;
+            font-size: 14px;
+            color: #39393d;
+        }
+
+        .share-top-3-left-box-right button {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(180deg, #ffba00, #ff8400);
+            border: none;
+            border-radius: 50%;
+            font-size: 16px;
+            color: #ffffff;
+            margin-top: 10px;
+            margin-left: 30px;
+            cursor: pointer;
+        }
+
+        .share-people-info {
+            width: 92%;
+            height: 90px;
+            margin-top: 60px;
+            margin-left: 4%;
+            background: linear-gradient(270deg, #1d2bed, #3b47f0);
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .share-people-info-left {
+            width: 49%;
+            height: 100%;
+        }
+
+        .share-people-info-right {
+            width: 49%;
+            height: 100%;
+        }
+
+        .share-people-info-left-top {
+            margin-top: 25px;
+            margin-left: 10px;
+            display: flex;
+        }
+
+        .share-people-info-left-top-1 {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .share-people-info-left-top-2 {
+            margin-left: 60px;
+        }
+
+        .share-people-info-left-bottom {
+            color: #ffffff;
+            margin-top: 15px;
+            margin-left: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            text-align: center;
+        }
+
+        .level-item {
+            width: 92%;
+            height: 100PX;
+            margin-left: 4%;
+            background: #ffffff;
+            display: flex;
+            margin-top: 10px;
+            border-radius: 5px;
+            color: #39393d;
+        }
+
+        .level-left {
+            width: 18%;
+            height: 100%;
+        }
+
+        .level-right {
+            width: 82%;
+            height: 100%;
+        }
+
+        .level-left-top {
+            width: 100%;
+            height: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .level-left-top img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .level-left-bottom {
+            width: 100%;
+            height: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: -5px;
+        }
+
+        .level-right {
+            display: flex;
+        }
+
+        .level-right-1 {
+            width: 33%;
+            height: 100%;
+            background: #ffffff;
+        }
+
+        .level-right-2 {
+            width: 33%;
+            height: 100%;
+            background: #ffffff;
+        }
+
+        .level-right-3 {
+            width: 33%;
+            height: 100%;
+            background: #ffffff;
+        }
+
+        .level-item-detail {
+            height: 50%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .share_mian {
+            width: calc(92% - 40px);
+            height: 100%;
+            margin-left: 4%;
+            margin-top: 10px;
+            padding-left: 0;
+            padding: 20px;
+            color: #39393d;
+            font-weight: normal;
+            background-color: #ffffff;
+        }
+
+        .team-container {
+            margin: 0 auto;
+            padding: 15px;
+            overflow: hidden;
+            margin-top: 30px;
+        }
+
+        .team-stats {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .team-size-card {
+            flex: 1;
+            background-color: #e74c3c;
+            border-radius: 10px;
+            padding: 15px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-label {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .size-value {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .red-circle {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 0, 0, 0.3);
+            border-radius: 50%;
+            right: -15px;
+            bottom: -15px;
+        }
+
+        .team-income-card {
+            flex: 1.5;
+            background-color: #ff9500;
+            border-radius: 10px;
+            padding: 15px;
+            color: white;
+            position: relative;
+        }
+
+        .income-value {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .team-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .team-levels {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            align-items: flex-end;
+        }
+
+        .team-level {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30%;
+        }
+
+        .team-level:nth-child(2) .level-icon {
+            width: 85px;
+            height: 85px;
+            margin-top: -15px;
+        }
+
+        .team-level:nth-child(2) .level-icon img {
+            width: 85px;
+            height: 85px;
+        }
+
+        .level-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .level-icon img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+        }
+
+        .level-info {
+            text-align: center;
+        }
+
+        .level-name {
+            color: #333;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
+
+        .level-name img {
+            width: 8px;
+            margin-left: 5px;
+        }
+
+        .level-percent {
+            color: #333;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 5px 0;
+            border-top: 1px solid #ddd;
+            z-index: 1000;
+        }
+
+        footer .foot_bo {
+            flex: 1;
+            text-align: center;
+        }
+
+        footer .foot_bo img {
+            width: 24px;
+            height: 24px;
+            display: block;
+            margin: 0 auto 4px;
+        }
+
+        footer .foot_bo p {
+            margin: 0;
+            font-size: 12px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="team-container">
+        <div class="team-stats">
+            <div class="team-size-card">
+                <div class="card-label">Tamanho da equipe</div>
+                <div class="size-value">0</div>
+                <div class="red-circle"></div>
+                <div class="star-icon"><i class="fas fa-star"></i></div>
+            </div>
+            <div class="team-income-card">
+                <div class="card-label">Rendimentos da equipe</div>
+                <div class="income-value">AOA 0</div>
+                <div class="team-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-levels">
+            <div class="team-level" onclick="window.location.href='2.html'">
+                <div class="level-icon">
+                    <img src="https://roche-ec.cyou/static/home/img/dhl/0020.png" alt="Equipe 2">
+                </div>
+                <div class="level-info">
+                    <div class="level-name">Equipe 2<img src="https://roche-ec.cyou/static/home/img/dhl/0022.png"></div>
+                    <div class="level-percent">2%</div>
+                </div>
+            </div>
+
+            <div class="team-level" onclick="window.location.href='1.html'">
+                <div class="level-icon">
+                    <img src="https://roche-ec.cyou/static/home/img/dhl/0019.png" alt="Equipe 1">
+                </div>
+                <div class="level-info">
+                    <div class="level-name">Equipe 1<img src="https://roche-ec.cyou/static/home/img/dhl/0022.png"></div>
+                    <div class="level-percent">20%</div>
+                </div>
+            </div>
+
+            <div class="team-level" onclick="window.location.href='3.html'">
+                <div class="level-icon">
+                    <img src="https://roche-ec.cyou/static/home/img/dhl/0021.png" alt="Equipe 3">
+                </div>
+                <div class="level-info">
+                    <div class="level-name">Equipe 3<img src="https://roche-ec.cyou/static/home/img/dhl/0022.png"></div>
+                    <div class="level-percent">1%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="share-top">
+        <div class="share-top-3">
+            <div class="share-top-3-left">
+                <div class="share-top-3-left-box">
+                    <div class="share-top-3-left-box-left">
+                        <div class="share-top-3-left-box-left-top">
+                            <b id="inviteLinkText">Carregando código de convite...</b>
+                        </div>
+                        <div class="share-top-3-left-box-left-bottom">
+                            <b>Meu link de convite</b>
+                        </div>
+                    </div>
+                    <div class="share-top-3-left-box-right">
+                        <button id="copyButton">Copiar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="share_mian">
+        <p>(Promoção de três níveis, renda ilimitada) plano de recompensa de promoção</p><p><br/></p><p>23% de recompensa por promoção direta; Fissão de equipe, múltiplos benefícios</p><p><br/></p><p>Os usuários que você recomendar se tornarão automaticamente seus membros de primeiro nível</p><p><br/></p><p>Usuários desenvolvidos por membros de primeiro nível se tornarão seus membros de segundo nível</p><p><br/></p><p>Usuários desenvolvidos por membros de segundo nível se tornarão seus membros de terceiro nível</p><p><br/></p><p>Estrutura de receita: A--25&nbsp; B--5&nbsp; &nbsp;C--1</p><p><br/></p><p>Renda de primeiro nível: 25% do valor do investimento do membro de primeiro nível</p><p><br/></p><p>Renda secundária: 5% do valor do investimento dos membros de segundo nível</p><p><br/></p><p>Renda de terceiro nível: 1% do valor do investimento do membro de terceiro nível</p><p><br/></p><p>Exemplo de lucro: A investe 1000, você receberá 250</p><p>B Invista 1000, você ganhará 50</p><p>C Invista 1000, você ganhará 5</p><p>(Você receberá uma recompensa por cada produto em que seus subordinados investirem)</p><p><br/></p>    </div>
+
+    <div style="height: 70px;"></div>
+    
+    <footer>
+        <div class="foot_bo">
+            <a href="home.html">
+                <img src="https://roche-ec.cyou/static/home/img/dhl/0010.png" />
+                <p class="xz">Início</p>
+            </a>
+        </div>
+        <div class="foot_bo">
+            <a href="produto.html">
+                <img src="https://roche-ec.cyou/static/home/img/dhl/0012.png" />
+                <p>Ganhos</p>
+            </a>
+        </div>
+        <div class="foot_bo">
+            <a href="equipe.html">
+                <img src="https://roche-ec.cyou/static/home/img/dhl/0014.png" />
+                <p>Team</p>
+            </a>
+        </div>
+        <div class="foot_bo">
+            <a href="perfil.html">
+                <img src="https://roche-ec.cyou/static/home/img/dhl/0016.png" />
+                <p>Meu</p>
+            </a>
+        </div>
+    </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+
+    <script type="text/javascript">
+        // Função para mostrar mensagens usando layer.js ou fallback
+        function showMessage(message) {
+            if (typeof layer !== 'undefined') {
+                layer.open({
+                    content: message,
+                    skin: 'msg',
+                    time: 2
+                });
+            } else {
+                alert(message);
+            }
+        }
+
+        // Função principal para carregar o código de convite
+        async function loadUserInviteCode() {
+            const userId = localStorage.getItem("user_id");
+            if (!userId) {
+                showMessage("Faça login para acessar seu código de convite");
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://api-wped.onrender.com/user/${userId}`);
+                if (!response.ok) {
+                    throw new Error("Erro ao carregar dados");
+                }
+                
+                const userData = await response.json();
+                
+                if (userData.codigo_convite) {
+                    const inviteLink = `file:///C:/Users/us/Desktop/reche/registrar.html?ref=${userData.codigo_convite}`;
+                    document.getElementById('inviteLinkText').textContent = inviteLink;
+                    
+                    // Configurar botão de copiar com ClipboardJS
+                    new ClipboardJS('#copyButton', {
+                        text: function() {
+                            return inviteLink;
+                        }
+                    });
+                    
+                    document.getElementById('copyButton').addEventListener('click', function() {
+                        showMessage("Link copiado com sucesso!");
+                    });
+                } else {
+                    throw new Error("Código de convite não encontrado");
+                }
+            } catch (error) {
+                console.error("Erro:", error);
+                document.getElementById('inviteLinkText').textContent = "Erro ao carregar código";
+                showMessage("Erro ao carregar código de convite");
+            }
+        }
+
+       async function loadTeamData() {
+    try {
+        const userId = localStorage.getItem("user_id");
+        if (!userId) {
+            showMessage("Usuário não autenticado.");
+            return;
+        }
+
+        // 1. Buscar dados do usuário logado
+        const responseUser = await fetch(`https://api-wped.onrender.com/user/${userId}`);
+        const userData = await responseUser.json();
+        const myCode = userData.codigo_convite;
+
+        // 2. Buscar todos os usuários
+        const responseAll = await fetch("https://api-wped.onrender.com/user");
+        const allUsers = await responseAll.json();
+
+        // 3. Nível 1 = quem usou meu código de convite
+        const level1 = allUsers.filter(u => u.codigo_convite_referido === myCode);
+
+        // 4. Nível 2 = quem foi convidado por alguém do nível 1
+        const level1Codes = level1.map(u => u.codigo_convite);
+        const level2 = allUsers.filter(u => level1Codes.includes(u.codigo_convite_referido));
+
+        // 5. Nível 3 = quem foi convidado por alguém do nível 2
+        const level2Codes = level2.map(u => u.codigo_convite);
+        const level3 = allUsers.filter(u => level2Codes.includes(u.codigo_convite_referido));
+
+        // 6. Calcular total
+        const totalTeamSize = level1.length + level2.length + level3.length;
+
+        // 7. Atualizar na interface
+        document.querySelector('.size-value').textContent = totalTeamSize;
+
+    } catch (error) {
+        console.error('Erro ao carregar dados da equipe:', error);
+        showMessage("Erro ao carregar dados da equipe");
+    }
+}
+
+        // Inicialização da página
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUserInviteCode();
+            loadTeamData();
+            
+            // Adicionar classe ativa ao item do menu da equipe
+            const footerItems = document.querySelectorAll('.foot_bo');
+            footerItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    footerItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Marcar o item da equipe como ativo (já que estamos na página da equipe)
+            document.querySelector('.foot_bo:nth-child(3)').classList.add('active');
+        });
+
+        // Verificar se o jQuery está carregado para usar layer.js
+        if (typeof $ !== 'undefined') {
+            $(document).ready(function() {
+                // Configurações adicionais que dependem do jQuery podem ser adicionadas aqui
+            });
+        }
+    </script>
+</body>
+</html>
